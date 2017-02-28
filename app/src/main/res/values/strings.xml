@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">门诊排班</string>
+    <string name="bt_key_erro">验证码错误！</string>
+    <string name="bt_key_sending">发送验证码</string>
+    <string name="bt_pwd_succ_found">密码重置成功！</string>
+    <string name="pwd_erro">密码有误！</string>
+    <string name="pwd_forgot">重置密码</string>
+    <string name="pwd_found1">新密码</string>
+    <string name="pwd_found2">重新输入新密码</string>
+    <string name="pwd_found_phone">您的手机号码</string>
+    <string name="pwd_n_same">前后密码不一致！</string>
+    <string name="si_title">门诊医生排班</string>
+    <string name="sign_in">登录</string>
+    <string name="sign_up">注册</string>
+    <string name="sin_choosing1">科管</string>
+    <string name="sin_choosing2">门诊办</string>
+    <string name="sin_phone">手机号</string>
+    <string name="sup_key">输入验证码</string>
+    <string name="sup_phone">请输入有效的手机号码</string>
+    <string name="sup_phone_enrolled">手机号码已被注册！</string>
+    <string name="sup_phone_erro">手机号码格式有误</string>
+    <string name="sup_pwd1">输入您的密码</string>
+    <string name="sup_pwd2">再次输入您的密码</string>
+    <string name="u_pwd">密码</string>
+    <string name="start_using">开始使用</string>
+</resources>

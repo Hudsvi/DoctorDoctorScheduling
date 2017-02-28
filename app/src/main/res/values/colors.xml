@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_navi">#ffececec</color>
+    <color name="bg_static1">#ff3a3a5b</color>
+    <color name="bg_static2">#4f4f87</color>
+    <color name="bg_static3">#ff3a3a40</color>
+    <color name="black">#ff000000</color>
+    <color name="black_yellow">#332d02</color>
+    <color name="bluedark">#020229</color>
+    <color name="blue_light">#37376c</color>
+    <color name="blue_mid_light">#515184</color>
+    <color name="blue_sma_light">#9494e6</color>
+    <color name="blue_white_light">#d6e2f4</color>
+    <color name="bt_signin_press">#ffb4b3b2</color>
+    <color name="bt_signin_static">#fff1f0e9</color>
+    <color name="bt_signup">#ff4a27ab</color>
+    <color name="bg_circle">#8da8fc</color>
+    <color name="bt_signup_press">#ff241559</color>
+    <color name="btn_bg">#ffab080b</color>
+    <color name="colorAccent">#ff778051</color>
+    <color name="colorPrimary">#2543ba</color>
+    <color name="colorPrimaryDark">#ff252315</color>
+    <color name="green">#ff93c70e</color>
+    <color name="grey">#ffd2d2d4</color>
+    <color name="purple">#ff664bc5</color>
+    <color name="red">#ffef2e00</color>
+    <color name="sin_bg_edit">#ff080715</color>
+    <color name="sup_ok">#ff55cc06</color>
+    <color name="text_hint">#ffc6c6c6</color>
+    <color name="text_master">#ff161616</color>
+    <color name="text_secondary">#ff949494</color>
+    <color name="white">#ffffff</color>
+    <color name="yellow">#f5d608</color>
+    <color name="yellow_light">#fcf7e7</color>
+    <color name="test">#ff656565</color>
+</resources>
