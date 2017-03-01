@@ -7,7 +7,7 @@ import java.util.WeakHashMap;
 /**
  * Created by Hudsvi on 2017/2/19 16:01.
  */
-public class WeakUtils<T> implements Iterable<T> {
+public class WeakMapUtils<T> implements Iterable<T> {
 
     private final WeakHashMap<T, Object> weakMap = new WeakHashMap<T, Object>();//定义一个弱类型的HashMap对象
     private final Object mValue = new Object();//将弱HashMap对象隐式转换成HashSet类型的对象
