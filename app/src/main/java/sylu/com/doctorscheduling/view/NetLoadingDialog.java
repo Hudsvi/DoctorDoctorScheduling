@@ -38,7 +38,7 @@ public class NetLoadingDialog extends Dialog {
     }
 
 
-    public NetLoadingDialog build(Context context, int type, String loadinghint) {
+    public NetLoadingDialog build(Context context, String loadingTextHint) {
         if (dialog != null) {
             dialog.dismiss();
             dialog = null;
@@ -58,8 +58,8 @@ public class NetLoadingDialog extends Dialog {
         //设置加载状态，默认加载中
         TextView loadingText = (TextView) dialog.findViewById(R.id.net_loading_dialog_textview);
         if (loadingText != null) {
-            if (TextUtils.isEmpty(loadinghint)) {
-                loadingText.setText(loadinghint);
+            if (!TextUtils.isEmpty(loadingTextHint)) {
+                loadingText.setText(loadingTextHint);
             } else {
                 loadingText.setVisibility(View.GONE);
             }

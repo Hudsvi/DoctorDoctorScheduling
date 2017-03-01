@@ -22,4 +22,14 @@
     <style name="splash" parent="@android:style/Theme.NoTitleBar.Fullscreen">
         <item name="android:windowActionBar">false</item>
     </style>
+
+<style name="netdialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:backgroundDimEnabled">true</item><!--背景模糊-->
+    </style>
+
 </resources>

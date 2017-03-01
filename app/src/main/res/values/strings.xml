@@ -24,4 +24,5 @@
     <string name="sup_pwd2">再次输入您的密码</string>
     <string name="u_pwd">密码</string>
     <string name="start_using">开始使用</string>
+    <string name="netloading">加载中……</string>
 </resources>
