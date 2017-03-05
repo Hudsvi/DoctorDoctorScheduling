@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sylu.com.doctorscheduling">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,14 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".main.MainActivity" android:theme="@style/splash">
+        <activity
+            android:name=".main.SplashActivity"
+            android:theme="@style/splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.SplashActivity" android:theme="@style/Theme.Light" android:launchMode="singleTop"/>
-
+        <activity
+            android:name=".main.MainActivity"
+            android:launchMode="singleInstance"/>
+        <activity
+            android:name=".main.LoginActivity" android:theme="@style/Theme.Login"/>
     </application>
 
 </manifest>

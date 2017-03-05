@@ -2,7 +2,6 @@ package sylu.com.doctorscheduling.utils;
 
 import android.content.Context;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,10 +17,10 @@ public class DateTimeFormatUtils {
     private  static final SimpleDateFormat WEEK_OF_MONTH=new SimpleDateFormat("'第'W'周'");
     private  static final SimpleDateFormat DAY_OF_WEEK=new SimpleDateFormat("'星期'u");
     private  static final SimpleDateFormat AM_OR_PM=new SimpleDateFormat("HH:mm:ss a");
-    private  static Calendar calender;
+    private  static Calendar calendar;
     public DateTimeFormatUtils(Context context){
         this.context=context;
-        this.calender=Calendar.getInstance();
+        this.calendar =Calendar.getInstance();
     }
     public static String getMonthOfYear(String milliseconds){
         if(milliseconds.trim().length()!=13){
@@ -50,10 +49,14 @@ public class DateTimeFormatUtils {
     public static Date changeMSToDate(String ms){
         return new Date(Long.valueOf(ms));
     }
-    public static String changeDateToMS(int year,int month,int day,int hour,int minute,int seconds){
-       if(calender!=null) {
-           calender.set(year, month, day, hour, minute, seconds);
-           long ms = calender.getTimeInMillis();
+    public static String changeDateToMS(Date date){
+        if(date==null) {
+           return "1000000000000";
+        }
+       else
+        if(calendar !=null) {
+           calendar.set(date.getYear(), date.getMonth(), date.getDay(), date.getHours(), date.getMinutes(), date.getSeconds());
+           long ms = calendar.getTimeInMillis();
            return String.valueOf(ms);
        }
         return "";

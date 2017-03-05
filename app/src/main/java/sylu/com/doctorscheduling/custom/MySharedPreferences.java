@@ -40,8 +40,8 @@ public class MySharedPreferences {
         editor.commit();
     }
 
-    public boolean getBoolreanValue(String name) {
-        boolean b = spre.getBoolean(name, false);
+    public boolean getBooleanValue(String name) {
+        boolean b = spre.getBoolean(name, true);
         return b;
     }
 

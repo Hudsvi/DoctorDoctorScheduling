@@ -13,6 +13,10 @@
         <item name="windowActionBar">false</item>
         <item name="android:dropDownListViewStyle">@style/list_style</item>
     </style>
+    <style name="Theme.Login" parent="@style/AppTheme">
+        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
     <style name="list_style" parent="@android:style/Widget.ListView.DropDown">
         <item name="android:divider">@null</item>
         <item name="android:background">@android:color/transparent</item>

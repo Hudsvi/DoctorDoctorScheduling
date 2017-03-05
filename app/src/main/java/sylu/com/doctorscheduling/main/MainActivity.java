@@ -1,5 +1,6 @@
 package sylu.com.doctorscheduling.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,20 +16,12 @@ import sylu.com.doctorscheduling.custom.MyFragmentPagerAdapter;
 
 public class MainActivity extends BaseActivity implements MyFragmentPagerAdapter.MyOnPageChangedListener {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-    }
-
-    @Override
     protected void InitView(Bundle savedInstanceState) {
-
     }
 
     @Override
     protected int getLayoutView() {
-        return 0;
+        return R.layout.activity_main;
     }
 
     @Override
@@ -44,5 +37,8 @@ public class MainActivity extends BaseActivity implements MyFragmentPagerAdapter
     @Override
     public void mPageScrollStateChanged(int state) {
 
+    }
+    public static void enter(Context context){
+        context.startActivity(new Intent(context,MainActivity.class));
     }
 }

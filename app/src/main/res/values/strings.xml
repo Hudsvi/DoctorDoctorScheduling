@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">门诊排班</string>
+    <string name="app_name">门诊医生排班</string>
     <string name="bt_key_erro">验证码错误！</string>
     <string name="bt_key_sending">发送验证码</string>
     <string name="bt_pwd_succ_found">密码重置成功！</string>
