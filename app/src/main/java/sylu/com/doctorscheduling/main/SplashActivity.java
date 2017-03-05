@@ -50,9 +50,9 @@ public class SplashActivity extends Activity {
 
     @OnClick(R.id.splash_start)
     void Onclik(View v) {
-        LoginActivity.enter(this);
         MySharedPreferences.getInstance(context).putBooleanValue(Constants.FIRST_TIME_LAUNCHED, false);
-        this.finish();
+        LoginActivity.enter(this);
+        finish();
     }
     @OnPageChange(R.id.splash_pager)
     void onPageSelected(int position){
@@ -73,6 +73,7 @@ public class SplashActivity extends Activity {
         if(!FirstTimeLaunched) {
             checkLoginStatus();//进入登录界面前，判断用户是否已经登陆过系统
         }
+
     }
 
     private void checkLoginStatus() {
@@ -83,8 +84,8 @@ public class SplashActivity extends Activity {
                     public void call(Integer integer) {
                         UserLoginStatus = MySharedPreferences.getInstance(context).getStringValue(Constants.LOGIN_STATUS);
                         if (UserLoginStatus.equals("")) {
-                            finish();
                             LoginActivity.enter(context);
+                            finish();
                         } else {
                             MainActivity.enter(context);
                             finish();
@@ -135,11 +136,4 @@ public class SplashActivity extends Activity {
                 .map(t -> delayTime - t.intValue())
                 .take(delayTime+1);
     }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.layout_stay, R.anim.layout_translate_out);
-    }
-
 }
