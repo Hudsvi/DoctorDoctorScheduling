@@ -22,7 +22,18 @@
     <string name="sup_phone_erro">手机号码格式有误</string>
     <string name="sup_pwd1">输入您的密码</string>
     <string name="sup_pwd2">再次输入您的密码</string>
-    <string name="u_pwd">密码</string>
+    <string name="u_pwd">密 码</string>
     <string name="start_using">开始使用</string>
     <string name="netloading">加载中……</string>
+    <string name="ptr_pull">下拉刷新</string>
+    <string name="ptr_release">释放刷新</string>
+    <string name="ptr_loading">正在刷新</string>
+    <string name="ptr_complete">加载完成</string>
+    <string name="ptr_failure">刷新失败</string>
+    <string name="main_yuyue">预约</string>
+    <string name="main_muban">排班模板</string>
+    <string name="main_zidongpaiban">自动排班</string>
+    <string name="main_fuhe">复核</string>
+    <string name="main_fabu">发布</string>
+
 </resources>

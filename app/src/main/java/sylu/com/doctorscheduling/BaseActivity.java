@@ -16,6 +16,7 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.utils.manager.ActivityManager;
+import sylu.com.doctorscheduling.utils.manager.UIManager;
 
 /**
  * Created by Administrator on 2017/1/27.
@@ -77,16 +78,16 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogIn
             int[] location={0,0};
             int s_width=location[0];
             int s_height=location[1];
-            int e_width=s_width+view.getWidth();
-            int e_height=s_height+view.getHeight();
             view.getLocationInWindow(location);
-            if(ev.getX()>s_width&&ev.getX()<e_width&&ev.getY()>s_height&&ev.getY()<e_height){
+            int e_width=s_width+view.getWidth()+ (int)UIManager.dipToPixels(this,32.0f);
+            int e_height=s_height+view.getHeight();
+            if((ev.getX()>s_width&&ev.getX()<e_width&&ev.getY()>s_height&&ev.getY()<e_height)) {
                 return false;
             }
             else
                 return true;
         }
-        return false;
+        else return false;
     }
 
     @Override

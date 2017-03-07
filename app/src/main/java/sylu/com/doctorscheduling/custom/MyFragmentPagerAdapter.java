@@ -17,9 +17,8 @@ import java.util.List;
 public abstract class MyFragmentPagerAdapter extends PagerAdapter implements View.OnClickListener, ViewPager.OnPageChangeListener {
     private List<Fragment> frags;
     private String[] titles;
-    FragmentManager fmanager;
-
-    MyOnPageChangedListener pagechanged;
+    private FragmentManager fmanager;
+    private MyOnPageChangedListener pagechanged;
 
     public MyFragmentPagerAdapter(FragmentManager fmanager, List<Fragment> frags, String[] titles) {
         this.fmanager = fmanager;

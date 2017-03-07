@@ -24,10 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity"
+            android:name=".main.MainActivity" android:theme="@style/Theme.Login"
             android:launchMode="singleInstance"/>
         <activity
             android:name=".main.LoginActivity" android:theme="@style/Theme.Login"/>
+        <activity
+            android:name=".main.SignupActivity" android:theme="@style/Theme.Login"/>
+        <activity
+            android:name=".main.ForgotPwdActivity" android:theme="@style/Theme.Login"/>
     </application>
 
 </manifest>
