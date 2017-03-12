@@ -50,7 +50,7 @@ public class SplashActivity extends Activity {
 
     @OnClick(R.id.splash_start)
     void Onclik(View v) {
-        MySharedPreferences.getInstance(context).putBooleanValue(Constants.FIRST_TIME_LAUNCHED, false);
+        MySharedPreferences.getInstance().putBooleanValue(Constants.FIRST_TIME_LAUNCHED, false);
         LoginActivity.enter(this);
         finish();
     }
@@ -82,7 +82,7 @@ public class SplashActivity extends Activity {
                 .subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer integer) {
-                        UserLoginStatus = MySharedPreferences.getInstance(context).getStringValue(Constants.LOGIN_STATUS);
+                        UserLoginStatus = MySharedPreferences.getInstance().getStringValue(Constants.LOGIN_STATUS);
                         if (UserLoginStatus.equals("")) {
                             LoginActivity.enter(context);
                             finish();
@@ -95,7 +95,7 @@ public class SplashActivity extends Activity {
     }
 
     private void inspectLaunch() {
-        FirstTimeLaunched = MySharedPreferences.getInstance(context).getBooleanValue(Constants.FIRST_TIME_LAUNCHED);
+        FirstTimeLaunched = MySharedPreferences.getInstance().getBooleanValue(Constants.FIRST_TIME_LAUNCHED);
         if (FirstTimeLaunched) {
             logo.setVisibility(View.GONE);
             putData();

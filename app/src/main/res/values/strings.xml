@@ -35,5 +35,10 @@
     <string name="main_zidongpaiban">自动排班</string>
     <string name="main_fuhe">复核</string>
     <string name="main_fabu">发布</string>
-
+    <string name="cancel">取消</string>
+    <string name="calender_choosing">选择时间或日期</string>
+    <string name="ensure">确定</string>
+    <string name="paizhaoshangchuan">拍照上传</string>
+    <string name="xiang_ce_xuan_ze">相册选择</string>
+    <string name="net_connecting_erro">客观，你的网络连接有问题哦^_^</string>
 </resources>

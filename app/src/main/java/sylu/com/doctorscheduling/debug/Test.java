@@ -6,6 +6,7 @@ import android.os.Handler;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -21,10 +22,16 @@ public class Test extends Activity {
     Observable<List<String>> query(String text) {
         return null;
     }
+    private String admin_name;//登录者的昵称
+    private String[] managed_departments;//记录科室管理员或者门诊办负责人所管理的科室。
+    private int login_identifies;//判断登录者身份
+    private boolean departments_bound;//判断是否绑定相应科室
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
+
         Handler h=new Handler();
         observable.subscribe(subscriber);
         int i=10;

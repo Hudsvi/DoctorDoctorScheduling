@@ -38,7 +38,7 @@ public class NetLoadingDialog extends Dialog {
     }
 
 
-    public NetLoadingDialog build(Context context, String loadingTextHint) {
+    public NetLoadingDialog build(String loadingTextHint) {
         if (dialog != null) {
             dialog.dismiss();
             dialog = null;
@@ -53,8 +53,10 @@ public class NetLoadingDialog extends Dialog {
         Window dialogWindow = dialog.getWindow();
         WindowManager.LayoutParams params = dialogWindow.getAttributes();
         Display d = dialogWindow.getWindowManager().getDefaultDisplay();
-        dialogWindow.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+//        dialogWindow.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+        dialogWindow.setGravity(Gravity.CENTER);
         dialogWindow.setAttributes(params);
+
         //设置加载状态，默认加载中
         TextView loadingText = (TextView) dialog.findViewById(R.id.net_loading_dialog_textview);
         if (loadingText != null) {

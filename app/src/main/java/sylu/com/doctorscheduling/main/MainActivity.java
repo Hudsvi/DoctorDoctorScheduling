@@ -19,6 +19,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.BindViews;
+import butterknife.OnClick;
+import butterknife.OnPageChange;
 import sylu.com.doctorscheduling.BaseActivity;
 import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.custom.MyFragmentPagerAdapter;
@@ -27,6 +29,7 @@ import sylu.com.doctorscheduling.main_fragment.Fuhe_Fragment;
 import sylu.com.doctorscheduling.main_fragment.Muban_Fragment;
 import sylu.com.doctorscheduling.main_fragment.Paiban_Fragment;
 import sylu.com.doctorscheduling.main_fragment.Yuyue_Fragment;
+import sylu.com.doctorscheduling.view.NetLoadingDialog;
 
 /**
  * Created by Hudsvi on 2017/2/18 15:41.
@@ -51,6 +54,9 @@ public class MainActivity extends BaseActivity{
     private FragmentManager fragManager;
     private MyFragmentPagerAdapter adapter;
     private Context context;
+    @OnPageChange(R.id.main_viewpager) void OnClick(){NetLoadingDialog d=new NetLoadingDialog(this).build("加載中....");
+    d.setLoadingImage(R.drawable.delete);
+    d.show();}
     @Override
     protected void InitView(Bundle savedInstanceState) {
         context=this;

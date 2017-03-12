@@ -24,7 +24,7 @@ public class UIForeRunner {
     public void showNetLoadingDialog(String loadingStatus, DialogInterface.OnCancelListener listener){
         if(dialog!=null&&dialog.isShowing()){return;}
         if(dialog==null&&context.get()!=null){
-            dialog=new NetLoadingDialog(context.get()).build(context.get(),loadingStatus);
+            dialog=new NetLoadingDialog(context.get()).build(loadingStatus);
             dialog.setOnCancelListener(listener);
             dialog.show();
         }
