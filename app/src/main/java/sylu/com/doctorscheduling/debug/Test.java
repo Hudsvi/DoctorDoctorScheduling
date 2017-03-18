@@ -3,6 +3,7 @@ package sylu.com.doctorscheduling.debug;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 
 import java.util.List;
 
@@ -13,13 +14,14 @@ import rx.Subscriber;
 import rx.functions.Action1;
 import rx.functions.Func0;
 import rx.observables.AsyncOnSubscribe;
+import sylu.com.doctorscheduling.R;
 
 /**
  * Created by Hudsvi on 2017/2/18 22:26.
  */
 
 public class Test extends Activity {
-    Observable<List<String>> query(String text) {
+   /* Observable<List<String>> query(String text) {
         return null;
     }
     private String admin_name;//登录者的昵称
@@ -62,5 +64,12 @@ public class Test extends Activity {
         public void onNext(String s) {
 
         }
-    };
+    };*/
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.menu_main_list);
+    }
 }

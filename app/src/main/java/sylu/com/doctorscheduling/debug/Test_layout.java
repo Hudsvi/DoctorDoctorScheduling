@@ -27,7 +27,6 @@ public class Test_layout extends Activity {
 
     @OnClick(R.id.button)
     public void onClick() {
-        startActivity(new Intent(Test_layout.this,Test1.class));
-        finish();
+        startActivity(new Intent(Test_layout.this,Test_Layout2.class));
     }
 }

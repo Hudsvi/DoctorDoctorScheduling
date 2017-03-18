@@ -13,7 +13,9 @@ public class Constants {
     public static final String COOKIE = "cookie";
     public static final String LOGIN_STATUS="login_status";
     public static final String LOGIN_DEVICE_ID="device-id";
-
+    public static final String MUBAN_DOCTOR_DETAILS="muban_details";
+    public static final String MUBAN_DOCTOR_LIST_NAME="muban_doctor_name";
+    public static final String MUBAN_DOCTOR_LIST_ID="muban_doctor_id";
     public static final int TIME_OUT=6;
     public static final int  TIME_OUT_READ=8;
 

@@ -16,23 +16,37 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".debug.Test1"
+            android:name=".debug.Test_layout"
             android:theme="@style/splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".debug.Test"/>
+        <activity android:name=".debug.Test_Layout2" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".debug.Test" />
+        <activity android:name=".main.muban.Doctor_List_Activity" />
+
         <activity
-            android:name=".main.MainActivity" android:theme="@style/Theme.Login"
-            android:launchMode="singleInstance"/>
+            android:name=".main.MainActivity"
+            android:theme="@style/Theme.Login" />
         <activity
-            android:name=".main.LoginActivity" android:theme="@style/Theme.Login"/>
+            android:name=".main.LoginActivity"
+            android:theme="@style/Theme.Login" />
         <activity
-            android:name=".main.SignupActivity" android:theme="@style/Theme.Login"/>
+            android:name=".main.SignupActivity"
+            android:theme="@style/Theme.Login" />
         <activity
-            android:name=".main.ForgotPwdActivity" android:theme="@style/Theme.Login"/>
+            android:name=".main.ForgotPwdActivity"
+            android:theme="@style/Theme.Login" />
+        <activity
+            android:name=".main.muban.Doctor_Details_Activity"
+            android:theme="@style/Theme.Login" />
     </application>
 
 </manifest>

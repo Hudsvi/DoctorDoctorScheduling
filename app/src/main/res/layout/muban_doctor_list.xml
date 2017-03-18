@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/muban_main_bar_frame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_mid_light"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <RadioButton
+            android:id="@+id/muban_workday_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:enabled="false"
+            android:background="@drawable/muban_workday"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="工作日"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/div_line_vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/muban_workday_state"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/muban_day_of_week_bar"
+            />
+
+        <RadioGroup
+            android:id="@+id/muban_day_of_week_bar"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/muban_day_of_week1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:paddingTop="4dp"
+                android:gravity="center_horizontal"
+                android:text="下周一"
+                android:paddingBottom="20dp"
+                android:button="@null"
+                android:checked="true"
+                android:textColor="@color/muban_week_bar"
+                android:background="@drawable/muban_week_bar"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/muban_day_of_week2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:text="下周二"
+                android:paddingBottom="20dp"
+                android:paddingTop="4dp"
+                android:gravity="center"
+                android:button="@null"
+                android:textColor="@color/muban_week_bar"
+                android:background="@drawable/muban_week_bar"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:id="@+id/muban_day_of_week3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:paddingBottom="20dp"
+                android:text="下周三"
+                android:paddingTop="4dp"
+                android:gravity="center"
+                android:button="@null"
+                android:textColor="@color/muban_week_bar"
+                android:background="@drawable/muban_week_bar"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:id="@+id/muban_day_of_week4"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:paddingTop="4dp"
+                android:gravity="center"
+                android:text="下周四"
+                android:paddingBottom="20dp"
+                android:button="@null"
+                android:textColor="@color/muban_week_bar"
+                android:background="@drawable/muban_week_bar"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/muban_day_of_week5"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:paddingBottom="20dp"
+                android:paddingTop="4dp"
+                android:gravity="center"
+                android:button="@null"
+                android:text="下周五"
+                android:textColor="@color/muban_week_bar"
+                android:background="@drawable/muban_week_bar"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/muban_day_of_week6"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingBottom="20dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:button="@null"
+                android:text="下周六"
+                android:textColor="@color/muban_week_bar"
+                android:background="@drawable/muban_week_bar"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/muban_day_of_week7"
+                android:layout_width="0dp"
+                android:paddingBottom="20dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:paddingTop="4dp"
+                android:gravity="center"
+                android:text="下周日"
+                android:button="@null"
+                android:textColor="@color/muban_week_bar"
+                android:background="@drawable/muban_week_bar"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:focusable="false"
+            android:paddingBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+            <TextView
+                android:id="@+id/muban_main_day_of_month1"
+                android:layout_width="0dp"
+                android:textSize="10sp"
+                android:textColor="@color/text_hint"
+                android:text="21号"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/muban_main_day_of_month2"
+                android:layout_width="0dp"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:textColor="@color/text_hint"
+                android:text="22号"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/muban_main_day_of_month3"
+                android:layout_width="0dp"
+                android:text="23号"
+                android:textColor="@color/text_hint"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/muban_main_day_of_month4"
+                android:layout_width="0dp"
+                android:textSize="10sp"
+                android:text="24号"
+                android:textColor="@color/text_hint"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/muban_main_day_of_month5"
+                android:layout_width="0dp"
+                android:text="25号"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:textColor="@color/text_hint"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/muban_main_day_of_month6"
+                android:layout_width="0dp"
+                android:text="26号"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:textColor="@color/text_hint"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/muban_main_day_of_month7"
+                android:layout_width="0dp"
+                android:text="27号"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:textColor="@color/text_hint"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+
+        android:id="@+id/muban_main_ptr_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/muban_main_bar_frame">
+
+        <ListView
+            android:id="@+id/muban_main_doctor_listview"
+            android:layout_width="match_parent"
+            android:divider="@color/bt_signin_static"
+            android:dividerHeight="0.8dp"
+            android:layout_height="match_parent" />
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+</android.support.constraint.ConstraintLayout>

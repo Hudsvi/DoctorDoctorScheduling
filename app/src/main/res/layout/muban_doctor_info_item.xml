@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/muban_main_lsit_item_constraintlayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<TextView
+    android:id="@+id/muban_main_doctor_list_name"
+    android:layout_width="wrap_content"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingLeft="24dp"
+    android:textSize="16sp"
+    android:gravity="center"
+    android:text="李阳"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/muban_main_doctor_list_img"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="16dp"
+        android:src="@drawable/zhankai"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/muban_main_doctor_list_name"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0" />
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/muban_main_doctor_list_del"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="@+id/muban_main_doctor_list_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content">
+        <Button
+            android:id="@+id/muban_main_list_delete"
+            android:layout_height="wrap_content"
+            android:layout_width="88dp"
+            android:text="删除"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/list_item_delete"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
+        <Button
+            android:id="@+id/muban_main_list_cancel"
+            android:layout_height="wrap_content"
+            android:layout_width="88dp"
+            android:text="取消"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/item_cancel"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/muban_main_list_delete"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

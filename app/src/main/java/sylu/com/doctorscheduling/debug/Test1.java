@@ -1,5 +1,6 @@
-package sylu.com.doctorscheduling.debug;/*
 package sylu.com.doctorscheduling.debug;
+
+import android.app.Activity;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -29,10 +30,9 @@ import butterknife.OnClick;
 import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.view.portrait.PortraitDialog;
 
-*/
-/**
+/*
  * Created by Hudsvi on 2017/3/8 15:25.
- *//*
+ */
 
 
 public class Test1 extends Activity implements View.OnClickListener {
@@ -64,15 +64,13 @@ public class Test1 extends Activity implements View.OnClickListener {
             case 1:
                 if (resultCode == RESULT_OK && type == 101) {
                     Intent crop = new Intent("com.android.camera.action.CROP");
-                    crop.setDataAndType(data.getData(), "image*/
-/*");
+                    crop.setDataAndType(data.getData(), "image/*");
                     crop.putExtra("scale", true);
                     crop.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                     startActivityForResult(crop, 2);
                 } else if (resultCode == RESULT_OK) {
                     Intent crop = new Intent("com.android.camera.action.CROP");
-                    crop.setDataAndType(uri, "image*/
-/*");
+                    crop.setDataAndType(uri, "image/*");
                     crop.putExtra("scale", true);
                     crop.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                     startActivityForResult(crop, 2);
@@ -118,8 +116,7 @@ public class Test1 extends Activity implements View.OnClickListener {
             }
             uri = Uri.fromFile(out2);
             Intent xiang = new Intent(Intent.ACTION_GET_CONTENT);
-            xiang.setType("image*/
-/*");
+            xiang.setType("image/*");
             xiang.putExtra("crop", true);
             xiang.putExtra("scale", true);
             xiang.putExtra(MediaStore.EXTRA_OUTPUT, uri);
@@ -132,7 +129,8 @@ public class Test1 extends Activity implements View.OnClickListener {
             default:break;
     }
     }
-}*/
+}
+/*
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -147,9 +145,11 @@ import java.util.Locale;
 import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.view.datetimepicker.MyDateTimePicker;
 
+*/
 /**
  * Created by liuwan on 2016/9/28.
- */
+ *//*
+
 public class Test1 extends Activity implements View.OnClickListener {
 
     private RelativeLayout selectDate, selectTime;
@@ -212,3 +212,4 @@ public class Test1 extends Activity implements View.OnClickListener {
     }
 
 }
+*/

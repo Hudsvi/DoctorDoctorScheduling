@@ -24,6 +24,8 @@
     <color name="gray">#ffd2d2d4</color>
     <color name="purple">#ff664bc5</color>
     <color name="red">#ffef2e00</color>
+    <color name="red_light">#df5f40</color>
+    <color name="red_light_plus">#d28572</color>
     <color name="sin_bg_edit">#ff080715</color>
     <color name="sup_ok">#ff55cc06</color>
     <color name="text_hint">#ffc6c6c6</color>
@@ -32,5 +34,6 @@
     <color name="white">#ffffff</color>
     <color name="yellow">#f5d608</color>
     <color name="yellow_light">#fcf7e7</color>
-    <color name="test">#ff656565</color>
+    <color name="gray_classic">#ffd5d5d5</color>
+    <color name="transparent">#00ffffff</color>
 </resources>

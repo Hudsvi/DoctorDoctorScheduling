@@ -32,6 +32,7 @@ public class PortraitDialog extends Dialog{
         dialogWindow.setAttributes(params);
         paizhao=(TextView)this.findViewById(R.id.paizhao);
         xiangce=(TextView)this.findViewById(R.id.xiangce);
+        quxiao=(TextView)this.findViewById(R.id.quxiao);
         paizhao.setOnClickListener(listener);
         xiangce.setOnClickListener(listener);
         quxiao.setOnClickListener(listener);

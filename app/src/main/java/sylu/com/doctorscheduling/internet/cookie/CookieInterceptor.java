@@ -24,7 +24,7 @@ public class CookieInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         final Request.Builder builder=chain.request().newBuilder();
-        String cookies= MySharedPreferences.getInstance(MyApplication.getInstance()).getStringValue(Constants.COOKIE);
+        String cookies= MySharedPreferences.getInstance().getStringValue(Constants.COOKIE);
         if(!cookies.isEmpty()){
             builder.addHeader("APPCookie",cookies);
         }

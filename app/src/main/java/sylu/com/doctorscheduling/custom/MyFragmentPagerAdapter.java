@@ -15,12 +15,12 @@ import java.util.List;
  */
 
 public abstract class MyFragmentPagerAdapter extends PagerAdapter implements View.OnClickListener, ViewPager.OnPageChangeListener {
-    private List<Fragment> frags;
+    private List<android.app.Fragment> frags;
     private String[] titles;
-    private FragmentManager fmanager;
+    private android.app.FragmentManager fmanager;
     private MyOnPageChangedListener pagechanged;
 
-    public MyFragmentPagerAdapter(FragmentManager fmanager, List<Fragment> frags, String[] titles) {
+    public MyFragmentPagerAdapter(android.app.FragmentManager fmanager, List<android.app.Fragment> frags, String[] titles) {
         this.fmanager = fmanager;
         this.frags = frags;
         this.titles = titles;
@@ -39,10 +39,10 @@ public abstract class MyFragmentPagerAdapter extends PagerAdapter implements Vie
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        Fragment frag = frags.get(position);
+        android.app.Fragment frag = frags.get(position);
         if (!frag.isAdded()) {
-            FragmentTransaction fTransaction = fmanager.beginTransaction();
-            fTransaction.add(0, frag, frag.getClass().getSimpleName());
+            android.app.FragmentTransaction fTransaction = fmanager.beginTransaction();
+            fTransaction.add(frag,null);
             fTransaction.commitAllowingStateLoss();
             fmanager.executePendingTransactions();
             if (frag.getView().getParent() == null) {
