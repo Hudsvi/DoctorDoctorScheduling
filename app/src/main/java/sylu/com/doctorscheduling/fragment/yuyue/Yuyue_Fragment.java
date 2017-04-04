@@ -506,8 +506,8 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                 public void run() {
                     conn = SQLConnector.getInstance(getContext()).initSQL();
                     try {
-                        pre_sta = conn.prepareStatement("delete from reservation where dept='?'"
-                                +" and validateday1='?'");
+                        pre_sta = conn.prepareStatement("delete from reservation where dept=?"
+                                +" and validateday1=?");
                         pre_sta.setString(1, selected_dept);
                         pre_sta.setString(2, validateDate1);
                         pre_sta.executeUpdate();
@@ -649,22 +649,22 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                     conn = SQLConnector.getInstance(getContext()).initSQL();
                     try {
                         pre_sta = conn.prepareStatement("insert into reservation values" +
-                                "('?',?,?,?,?,'?','?','?')");
+                                "(?,?,?,?,?,?,?,?)");//////
                         pre_sta.setString(1, selected_dept);
-                        pre_sta.setTime(2, Time.valueOf(startTime1));
-                        pre_sta.setTime(3, Time.valueOf(startTime2));
-                        pre_sta.setDate(4, java.sql.Date.valueOf(validateDate1));
-                        pre_sta.setDate(5, java.sql.Date.valueOf(validateDate2));
+                        pre_sta.setString(2, startTime1);
+                        pre_sta.setString(3, startTime2);
+                        pre_sta.setString(4, validateDate1);
+                        pre_sta.setString(5, validateDate2);
                         pre_sta.setString(6, allowingdays);
                         pre_sta.setString(7, previousdays);
                         pre_sta.setString(8, defaulttimes);
                         pre_sta.executeUpdate();
+                        sendmessage(ADD_SUCCESS, null);
                     } catch (Exception e) {
                         sendmessage(ADD_ERRO, e);
                     } finally {
                         closeSQL();
                     }
-                    sendmessage(ADD_SUCCESS, null);
                 }
             }.start();
         }else{
@@ -695,12 +695,12 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                     try {
                         pre_sta = conn.prepareStatement("update reservation set " +
                                 "starttime=?,endtime=?,validateday1=?,validateday2=?," +
-                                "allowingdays='?',previousdays='?',defaulttimes='?' where" +
-                                "dept='?'");
-                        pre_sta.setTime(1, Time.valueOf(startTime1));
-                        pre_sta.setTime(2, Time.valueOf(startTime2));
-                        pre_sta.setDate(3, java.sql.Date.valueOf(validateDate1));
-                        pre_sta.setDate(4, java.sql.Date.valueOf(validateDate2));
+                                "allowingdays=?,previousdays=?,defaulttimes=? where" +
+                                "dept=?");
+                        pre_sta.setString(1, startTime1);
+                        pre_sta.setString(2, startTime2);
+                        pre_sta.setString(3, validateDate1);
+                        pre_sta.setString(4, validateDate2);
                         pre_sta.setString(5, allowingdays);
                         pre_sta.setString(6, previousdays);
                         pre_sta.setString(7, defaulttimes);
