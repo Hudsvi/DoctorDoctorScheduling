@@ -232,7 +232,6 @@ public class ForgotPwdActivity extends BaseActivity implements ForgotPwdContract
 
     private void cutdownTime(Integer id) {
         setMsm_Id(String.valueOf(id));
-        toast(getMsm_Id());
         sub = countSendTime(150)
                 .filter(t -> t >= 0)
                 .subscribe(new Action1<Integer>() {
