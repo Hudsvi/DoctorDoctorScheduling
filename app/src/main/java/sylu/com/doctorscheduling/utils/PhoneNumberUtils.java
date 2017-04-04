@@ -53,7 +53,7 @@ public enum PhoneNumberUtils {
 
     public static boolean validatedNumber(String num){
         for (PhoneNumberUtils p:PhoneNumberUtils.values()) {
-            if(p.equals(num))
+            if(p.phone_num.equals(num))
                 return true;
         }
         return false;

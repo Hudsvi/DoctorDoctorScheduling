@@ -42,8 +42,8 @@
     <string name="paizhaoshangchuan">拍照上传</string>
     <string name="xiang_ce_xuan_ze">相册选择</string>
     <string name="net_connecting_erro">客官，你的网络连接有问题哦^_^</string>
-    <string name="yuyue_spinner_tv">当前科室</string>
-    <string name="yuyue_date_tv">预约情况查询</string>
+    <string name="yuyue_spinner_tv">更换科室</string>
+    <string name="yuyue_date_tv">预约查询(点击选择日期)</string>
     <string name="yuyue_date_range_tv">当前预约有效期:</string>
     <string name="yuyue_start_tv">开始预约时间:</string>
     <string name="yuyue_end_tv">结束预约时间:</string>
@@ -62,8 +62,17 @@
     <string name="muban_details_start_am">上午开始时间:</string>
     <string name="muban_details_end_am">上午结束时间:</string>
     <string name="muban_details_amount_am">上午放号量:</string>
+    <string name="muban_details_time_eachone">单个放号量时间:</string>
     <string name="muban_details_diagnose_pm">下午是否开诊:</string>
     <string name="muban_details_start_pm">下午开始时间:</string>
     <string name="muban_details_end_pm">下午结束时间:</string>
     <string name="muban_details_amount_pm">下午放号量:</string>
+    <string name="muban_details_update_delete_title">温馨提示</string>
+    <string name="muban_details_update_delete_content">删除后出诊信息将不再展示</string>
+    <string name="paiban_details_stopping">申请停诊</string>
+    <string name="fuhe_doctor_diagnose">排班复核</string>
+    <string name="fuhe_doctor_not_diagnose">停诊复核</string>
+
+
+
 </resources>

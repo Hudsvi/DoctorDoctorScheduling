@@ -13,6 +13,6 @@ public class Test_Layout2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.fuhe_doctor_not_diagnose);
     }
 }

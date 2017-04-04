@@ -32,6 +32,8 @@ import sylu.com.doctorscheduling.custom.MySharedPreferences;
  */
 
 public class SplashActivity extends Activity {
+    /*
+        //-----------------导航栏相关
     @BindView(R.id.splash_pager)
     ViewPager vPager;
     @BindView(R.id.splash_nav)
@@ -40,20 +42,26 @@ public class SplashActivity extends Activity {
     FrameLayout start_frame;
     @BindView(R.id.splash_start)
     Button starting;
+
     @BindView(R.id.splash_logo)
     ImageView logo;
+*/
+
     private ArrayList<View> mViews;
     private MyImageViewPagerAdapter adapter;
     private boolean FirstTimeLaunched;
     private String UserLoginStatus;
     private Context context;
 
-    @OnClick(R.id.splash_start)
+/*    @OnClick(R.id.splash_start)
     void Onclik(View v) {
-        MySharedPreferences.getInstance().putBooleanValue(Constants.FIRST_TIME_LAUNCHED, false);
+        MySharedPreferences.getInstance(getBaseContext()).putBooleanValue(Constants.FIRST_TIME_LAUNCHED, false);
         LoginActivity.enter(this);
         finish();
-    }
+    }*/
+
+    //---------------------导航界面开始使用的按钮
+    /*
     @OnPageChange(R.id.splash_pager)
     void onPageSelected(int position){
         if(position==2){
@@ -61,28 +69,29 @@ public class SplashActivity extends Activity {
         }
         else
             start_frame.setVisibility(View.GONE);
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.splash);
-        ButterKnife.bind(this);
-        inspectLaunch();//如果是初次登陆，那么进入导航页
-        if(!FirstTimeLaunched) {
+//        ButterKnife.bind(this);
+//        inspectLaunch();//--------------------------------如果是初次登陆，那么进入导航页
+       /* if(!FirstTimeLaunched) {
             checkLoginStatus();//进入登录界面前，判断用户是否已经登陆过系统
-        }
+        }*/
+        checkLoginStatus();//进入登录界面前，判断用户是否已经登陆过系统
 
     }
 
     private void checkLoginStatus() {
-        reckonByTime(2)
+        reckonByTime(1500)
                 .filter(t -> t == 0)
                 .subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer integer) {
-                        UserLoginStatus = MySharedPreferences.getInstance().getStringValue(Constants.LOGIN_STATUS);
+                        UserLoginStatus = MySharedPreferences.getInstance(getBaseContext()).getStringValue(Constants.LOGIN_STATUS);
                         if (UserLoginStatus.equals("")) {
                             LoginActivity.enter(context);
                             finish();
@@ -94,16 +103,16 @@ public class SplashActivity extends Activity {
                 });
     }
 
-    private void inspectLaunch() {
-        FirstTimeLaunched = MySharedPreferences.getInstance().getBooleanValue(Constants.FIRST_TIME_LAUNCHED);
+    /*private void inspectLaunch() {
+        FirstTimeLaunched = MySharedPreferences.getInstance(getBaseContext()).getBooleanValue(Constants.FIRST_TIME_LAUNCHED);
         if (FirstTimeLaunched) {
             logo.setVisibility(View.GONE);
             putData();
         }
-    }
+    }*/
 
 
-    private void putData() {
+    /*private void putData() {
         mViews = new ArrayList<>();
         View view1 = LayoutInflater.from(this).inflate(R.layout.splash_guide1, null);
         View view2 = LayoutInflater.from(this).inflate(R.layout.splash_guide2, null);
@@ -114,26 +123,21 @@ public class SplashActivity extends Activity {
         adapter = new MyImageViewPagerAdapter(mViews) {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
-
-
-
             @Override
             public void onPageSelected(int position) {
-
             }
         };
         vPager.setAdapter(adapter);
-    }
+    }*/
 
     private Observable<Integer> reckonByTime(int time) {
         if (time < 0)
             time = 0;
         final int delayTime = time;
-        return Observable.interval(0, 1, TimeUnit.SECONDS)
+        return Observable.interval(0, 500, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(t -> delayTime - t.intValue())
-                .take(delayTime+1);
+                .map(t -> delayTime/500 - t.intValue())
+                .take(delayTime/500+1);
     }
 }

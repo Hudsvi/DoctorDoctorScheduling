@@ -1,5 +1,6 @@
 package sylu.com.doctorscheduling.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.EditText;
 
@@ -18,7 +19,7 @@ public interface LoginContract {
         LoginRequest getLoginParam();
 
         void clearEditText(EditText text);
-
+        Activity getActi();
         Context getContext();
     }
 

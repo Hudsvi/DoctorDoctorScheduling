@@ -9,9 +9,9 @@ import sylu.com.doctorscheduling.R;
 public enum IconNotfocused {
     RESERVATION(R.drawable.yuyue,0),
     TEMPLATE(R.drawable.muban,1),
-    REEXAMINE(R.drawable.fuhe,2),
-    AUTO_SCHEDULING(R.drawable.paiban,3),
-    RELEASE(R.drawable.fabu,4);
+    AUTO_SCHEDULING(R.drawable.paiban,2),
+    REEXAMINE(R.drawable.fuhe,3),
+    RELEASE(R.drawable.person,4);
     private int icon_id;
     private int icon_index;
     IconNotfocused(int icon, int index) {
@@ -22,7 +22,7 @@ public enum IconNotfocused {
         for (IconNotfocused icon :
                 IconNotfocused.values()) {
             if(icon.icon_index==index){
-                return icon.icon_index;
+                return icon.icon_id;
             }
         }
         return 0;

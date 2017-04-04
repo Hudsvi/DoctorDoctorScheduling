@@ -6,15 +6,15 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import sylu.com.doctorscheduling.custom.MyApplication;
+import sylu.com.doctorscheduling.custom.MyMultiDexApplication;
 
 /**
  * Created by Hudsvi on 2017/2/28 10:40.
  */
 
 public class PicassoUtils {
-        private static Picasso picasso = MyApplication.getPicasso();
-        private static Context context = MyApplication.getInstance();
+        private static Picasso picasso = MyMultiDexApplication.getPicasso();
+        private static Context context = MyMultiDexApplication.getInstance();
 
         public static void loadImage(String url, ImageView imageView){
             loadImage(context,url,imageView);

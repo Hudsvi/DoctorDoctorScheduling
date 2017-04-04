@@ -23,7 +23,7 @@ public class NetUtils {
         NetworkInfo[] netInfo=conn.getAllNetworkInfo();
         if(conn!=null&&netInfo!=null){
                 boolean e;
-                for (int i=0;i<=netInfo.length;i++){
+                for (int i=0;i<netInfo.length;i++){
                     e=netInfo[i].getState().equals(NetworkInfo.State.CONNECTED);
                     LogUtils.d(context.getClass().getName(),
                             "网络["+netInfo[i].getState().name()+"]是否可用："+String.valueOf(e));

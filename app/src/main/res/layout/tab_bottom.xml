@@ -1,80 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
+    <View
+        android:id="@+id/tab_main_view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@drawable/div_line_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="48dp">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@drawable/div_line_vertical"/>
-        <RadioGroup
-            android:id="@+id/main_radiogroup"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:paddingTop="5dp"
-            android:layout_height="match_parent">
-        <RadioButton
-            android:id="@+id/yuyue_main"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:checked="true"
-            android:button="@null"
-            android:text="@string/main_yuyue"
-            android:layout_weight="1"
-            android:gravity="center" />
-        <RadioButton
-            android:id="@+id/muban_main"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:checked="true"
-            android:button="@null"
-            android:text="@string/main_muban"
-            android:gravity="center" />
-        <RadioButton
-            android:id="@+id/paiban_main"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:checked="true"
-            android:button="@null"
-            android:text="@string/main_zidongpaiban"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_main_view">
 
-            android:gravity="center" />
-        <RadioButton
-            android:id="@+id/fuhe_main"
-            android:layout_weight="1"
+        <LinearLayout
+            android:id="@+id/yuyue_main_lin"
             android:layout_width="0dp"
-            android:layout_height="40dp"
-
-            android:layout_gravity="center"
-            android:checked="true"
-            android:button="@null"
-            android:text="@string/main_fuhe"
-
-            android:gravity="center" />
-        <RadioButton
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/personal_main"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:orientation="vertical">
 
-            android:layout_gravity="center"
-            android:checked="true"
-            android:button="@null"
-            android:text="@string/main_personal"
-            android:gravity="center" />
-        </RadioGroup>
+            <ImageView
+                android:id="@+id/yuyue_main_img"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/yuyue_main_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/main_yuyue"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/muban_main_lin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/muban_main_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/muban_main_tv"
+                android:paddingTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/main_muban"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/paiban_main_lin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/paiban_main_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:paddingTop="2dp"
+                android:id="@+id/paiban_main_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/main_zidongpaiban"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fuhe_main_lin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/fuhe_main_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/fuhe_main_tv"
+                android:paddingTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/main_fuhe"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/person_main_lin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/person_main_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/person_main_tv"
+                android:paddingTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/main_personal"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 
-
-
-</FrameLayout>
+    <!-- <RadioGroup
+         android:id="@+id/main_radiogroup"
+         android:orientation="horizontal"
+         android:layout_width="match_parent"
+         android:gravity="center_vertical"
+         android:layout_height="wrap_content">
+         <RadioButton
+             android:id="@+id/yuyue_main"
+             android:gravity="center_horizontal"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:checked="true"
+             android:button="@null"
+             android:textSize="14sp"
+             android:text="@string/main_yuyue"
+             android:layout_weight="1" />
+         <RadioButton
+             android:id="@+id/muban_main"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:gravity="center_horizontal"
+             android:checked="true"
+             android:layout_weight="1"
+             android:textSize="14sp"
+             android:button="@null"
+             android:text="@string/main_muban"/>
+         <RadioButton
+             android:id="@+id/paiban_main"
+             android:layout_weight="1"
+             android:layout_width="0dp"
+             android:checked="true"
+             android:layout_height="wrap_content"
+             android:button="@null"
+             android:textSize="14sp"
+             android:gravity="center_horizontal"
+             android:text="@string/main_zidongpaiban"/>
+         <RadioButton
+             android:id="@+id/fuhe_main"
+             android:layout_weight="1"
+             android:layout_width="0dp"
+             android:gravity="center_horizontal"
+             android:layout_height="wrap_content"
+             android:checked="true"
+             android:button="@null"
+             android:text="@string/main_fuhe"
+             android:textSize="14sp" />
+         <RadioButton
+             android:layout_weight="1"
+             android:id="@+id/personal_main"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:checked="true"
+             android:gravity="center_horizontal"
+             android:button="@null"
+             android:textSize="14sp"
+             android:text="@string/main_personal"/>
+     </RadioGroup>
+ -->
+</android.support.constraint.ConstraintLayout>

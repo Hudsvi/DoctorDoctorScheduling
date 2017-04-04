@@ -7,17 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import sylu.com.doctorscheduling.BaseFragment;
 import sylu.com.doctorscheduling.R;
 
 /**
  * Created by Hudsvi on 2017/2/17 17:21.
  */
 
-public class Personal_Fragment extends Fragment {
-    @Nullable
+public class Personal_Fragment extends BaseFragment {
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fabu,container,false);
-        return view;
+    protected int getLayoutView() {
+        return R.layout.personal;
+    }
+
+    @Override
+    protected void initViews(Bundle savedInstanceState) {
+
     }
 }

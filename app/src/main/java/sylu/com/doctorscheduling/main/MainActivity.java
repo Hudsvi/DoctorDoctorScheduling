@@ -1,107 +1,98 @@
 package sylu.com.doctorscheduling.main;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.BindViews;
-import butterknife.OnPageChange;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import sylu.com.doctorscheduling.BaseActivity;
 import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.custom.MyFragmentPagerAdapter;
-import sylu.com.doctorscheduling.fragment.personal.Personal_Fragment;
-import sylu.com.doctorscheduling.fragment.fuhe.Fuhe_Fragment;
-import sylu.com.doctorscheduling.fragment.muban.Muban_Fragment;
-import sylu.com.doctorscheduling.fragment.paiban.Paiban_Fragment;
+import sylu.com.doctorscheduling.custom.NoScrollViewPager;
 import sylu.com.doctorscheduling.fragment.yuyue.Yuyue_Fragment;
-import sylu.com.doctorscheduling.view.NetLoadingDialog;
+import sylu.com.doctorscheduling.utils.manager.ActivityManager;
+import sylu.com.doctorscheduling.view.MenuDialog;
 
 /**
  * Created by Hudsvi on 2017/2/18 15:41.
  */
 
-public class MainActivity extends BaseActivity{
-    @BindView(R.id.main_viewpager)
-    ViewPager viewPager;
+public class MainActivity extends BaseActivity implements MainContract.View {
+
     @BindView(R.id.main_titlebar_textview)
-    TextView title;
-    @BindViews({R.id.yuyue_main, R.id.muban_main,
-            R.id.fuhe_main, R.id.paiban_main, R.id.personal_main})
-    List<LinearLayout> bar_linearlayouts;
-   /* @BindViews({R.id.yuyue_main_imgview, R.id.muban_main_imgview,
-            R.id.fuhe_main_imgview, R.id.zidongpaiban_main_imgview, R.id.fabu_main_imgview})
-    List<RadioButton> bar_images;
-    @BindViews({R.id.yuyue_main_textview, R.id.muban_main_textview,
-            R.id.fuhe_main_textview, R.id.zidongpaiban_main_textview, R.id.fabu_main_textview})
-    List<TextView> bar_texts;*/
+    TextView mainTitlebarTextview;
+    @BindView(R.id.main_titlebar_user)
+    ImageView mainTitlebarUser;
+    @BindView(R.id.main_titlebar_menu)
+    ImageView mainTitlebarMenu;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tab_main_view)
+    View tabMainView;
+    @BindView(R.id.yuyue_main_img)
+    ImageView yuyueMainImg;
+    @BindView(R.id.yuyue_main_tv)
+    TextView yuyueMainTv;
+    @BindView(R.id.yuyue_main_lin)
+    LinearLayout yuyueMainLin;
+    @BindView(R.id.muban_main_img)
+    ImageView mubanMainImg;
+    @BindView(R.id.muban_main_tv)
+    TextView mubanMainTv;
+    @BindView(R.id.muban_main_lin)
+    LinearLayout mubanMainLin;
+    @BindView(R.id.paiban_main_img)
+    ImageView paibanMainImg;
+    @BindView(R.id.paiban_main_tv)
+    TextView paibanMainTv;
+    @BindView(R.id.paiban_main_lin)
+    LinearLayout paibanMainLin;
+    @BindView(R.id.fuhe_main_img)
+    ImageView fuheMainImg;
+    @BindView(R.id.fuhe_main_tv)
+    TextView fuheMainTv;
+    @BindView(R.id.fuhe_main_lin)
+    LinearLayout fuheMainLin;
+    @BindView(R.id.person_main_img)
+    ImageView personMainImg;
+    @BindView(R.id.person_main_tv)
+    TextView personMainTv;
+    @BindView(R.id.person_main_lin)
+    LinearLayout personMainLin;
+    @BindView(R.id.main_viewpager)
+    NoScrollViewPager mainViewpager;
+    @BindView(R.id.main_linearlayout)
+    ConstraintLayout mainLinearlayout;
     private String[] titles;
-    private List<android.app.Fragment> mfrags;
-    private android.app.FragmentManager fragManager;
+    private List<Fragment> mfrags;
     private MyFragmentPagerAdapter adapter;
-    private Context context;
-    @OnPageChange(R.id.main_viewpager) void OnClick(){NetLoadingDialog d=new NetLoadingDialog(this).build("加載中....");
-    d.setLoadingImage(R.drawable.delete);
-    d.show();}
+    private MainContract.Presenter presenter;
+    private int index = 0;
+    private long currenTime = 0;
+
+
     @Override
     protected void InitView(Bundle savedInstanceState) {
-        context=this;
-        setTitles();
-        putFragments();
-        addAdapter();
-    }
-
-    private void addAdapter() {
-        adapter=new MyFragmentPagerAdapter(fragManager,mfrags,titles){};
-        adapter.setPagechanged(new MyFragmentPagerAdapter.MyOnPageChangedListener() {
-            @Override
-            public void mPageSelected(int position) {
-                Toast.makeText(context, "position_selected", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void mPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Toast.makeText(context, "position_scrolled", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void mPageScrollStateChanged(int state) {
-
-            }
-        });
-        viewPager.setAdapter(adapter);
-        viewPager.setCurrentItem(0);
-    }
-
-    private void putFragments() {
-        mfrags = new ArrayList<>();
-        fragManager =getFragmentManager();
-        Yuyue_Fragment yuyue = new Yuyue_Fragment();
-        Muban_Fragment muban = new Muban_Fragment();
-        Personal_Fragment person = new Personal_Fragment();
-        Fuhe_Fragment fuhe = new Fuhe_Fragment();
-        Paiban_Fragment paiban = new Paiban_Fragment();
-        mfrags.add(yuyue);
-        mfrags.add(muban);
-        mfrags.add(fuhe);
-        mfrags.add(paiban);
-        mfrags.add(person);
-    }
-
-    private void setTitles() {
-        titles = new String[]{getResources().getString(R.string.main_yuyue), getResources().getString(R.string.main_muban),
-                getResources().getString(R.string.main_fuhe),
-                getResources().getString(R.string.main_zidongpaiban), getResources().getString(R.string.main_personal)};
+        setSupportActionBar(toolbar);
+        presenter = new MainPresenter(this);
+        ImageView[] imgs = {yuyueMainImg, mubanMainImg, paibanMainImg, fuheMainImg, personMainImg};
+        TextView[] tvs = {yuyueMainTv, mubanMainTv, paibanMainTv, fuheMainTv, personMainTv};
+        presenter.setTabIcon(0, imgs, tvs);
+        presenter.putFragments(imgs, tvs);
     }
 
     @Override
@@ -109,7 +100,98 @@ public class MainActivity extends BaseActivity{
         return R.layout.activity_main;
     }
 
+
     public static void enter(Context context) {
-        context.startActivity(new Intent(context, MainActivity.class));
+        context.startActivity(new Intent(context, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
+
+    @Override
+    public Context getContext() {
+        return MainActivity.this;
+    }
+
+    @Override
+    public void setAdapter(List<Fragment> lists, ImageView[] imgs, TextView[] tvs) {
+        mainViewpager.setOffscreenPageLimit(5);
+        adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), lists, mainViewpager);
+        adapter.setListener(new MyFragmentPagerAdapter.MyOnPageChangedListener() {
+            @Override
+            public void mPageSelected(int position) {
+                presenter.setTabIcon(position, imgs, tvs);
+                index = position;
+            }
+
+            @Override
+            public void mPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void mPageScrollStateChanged(int state) {
+
+            }
+        });
+        mainViewpager.setNoScroll(false);
+        mainViewpager.setAdapter(adapter);
+        mainViewpager.setCurrentItem(0);
+    }
+
+
+    @Override
+    public void setPresenter(MainContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (index != 0) {
+            mainViewpager.setCurrentItem(index - 1, true);
+        } else if (System.currentTimeMillis() - currenTime < 2000) {
+            ActivityManager.getInstance().Exit();
+        } else {
+            currenTime = System.currentTimeMillis();
+            Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @OnClick({R.id.main_titlebar_textview, R.id.main_titlebar_user, R.id.main_titlebar_menu, R.id.yuyue_main_lin, R.id.muban_main_lin, R.id.paiban_main_lin, R.id.fuhe_main_lin, R.id.person_main_lin})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.main_titlebar_textview:
+                break;
+            case R.id.main_titlebar_user:
+                break;
+            case R.id.main_titlebar_menu:
+                openMenu();
+                break;
+            case R.id.yuyue_main_lin:
+                mainViewpager.setCurrentItem(0, true);
+                break;
+            case R.id.muban_main_lin:
+                mainViewpager.setCurrentItem(1, true);
+                break;
+            case R.id.paiban_main_lin:
+                mainViewpager.setCurrentItem(2, true);
+                break;
+            case R.id.fuhe_main_lin:
+                mainViewpager.setCurrentItem(3, true);
+                break;
+            case R.id.person_main_lin:
+                mainViewpager.setCurrentItem(4, true);
+                break;
+        }
+    }
+
+    private void openMenu() {
+        if (mainViewpager.getCurrentItem() == 0) {
+        } else if (mainViewpager.getCurrentItem() == 1) {
+
+        } else if (mainViewpager.getCurrentItem() == 2) {
+
+        } else if (mainViewpager.getCurrentItem() == 3) {
+
+        } else if (mainViewpager.getCurrentItem() == 4) {
+
+        }
     }
 }

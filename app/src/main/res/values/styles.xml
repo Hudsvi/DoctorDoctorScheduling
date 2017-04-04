@@ -62,18 +62,16 @@
     </style>
     <style name="spinner_dialog" parent="android:style/Theme.Dialog"></style>
 
-    <style name="bar_menu" parent="android:style/Theme.Dialog">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="bar_menu">
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:inAnimation">@anim/menu_in</item>
+        <item name="android:outAnimation">@anim/menu_out</item>
     </style>
-    <style name="muban_details_menu" parent="Theme.AppCompat">
-        <item name="android:windowActionBar">false</item>
-    </style>
+    <!--
     <style name="muban_sub_btn" parent="Theme.AppCompat">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:background">@null</item>
         <item name="windowBackground">@null</item>
-    </style>
+    </style>-->
 </resources>

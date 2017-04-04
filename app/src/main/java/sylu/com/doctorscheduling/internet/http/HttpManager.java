@@ -20,7 +20,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import sylu.com.doctorscheduling.custom.MyApplication;
+import sylu.com.doctorscheduling.custom.MyMultiDexApplication;
 import sylu.com.doctorscheduling.custom.MySharedPreferences;
 import sylu.com.doctorscheduling.internet.cookie.CookieInterceptor;
 import sylu.com.doctorscheduling.utils.LogUtils;
@@ -61,7 +61,7 @@ public class HttpManager {
                 .retryOnConnectionFailure(true)
                 .addInterceptor(getLogInterceptor())
                 .addInterceptor(getCacheInterceptor())
-                .addInterceptor(new CookieInterceptor(MyApplication.getInstance()))
+                .addInterceptor(new CookieInterceptor(MyMultiDexApplication.getInstance()))
                 .protocols(Collections.singletonList(Protocol.HTTP_1_1))
                 .cache(cache);
 
@@ -83,12 +83,12 @@ public class HttpManager {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request.Builder builder = chain.request().newBuilder();
-                if (!NetUtils.isNetworkAvailable(MyApplication.getInstance())) {
+                if (!NetUtils.isNetworkAvailable(MyMultiDexApplication.getInstance())) {
                     builder = builder.cacheControl(CacheControl.FORCE_CACHE);
                 }
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded")
                         .addHeader("Accept", "*/*");
-                String token = MySharedPreferences.getInstance().getDeviceID();
+                String token = MySharedPreferences.getInstance(MyMultiDexApplication.getInstance()).getDeviceID();
                 if (token != null)
                     builder.addHeader("Courier-Token", token);
                 Response response = chain.proceed(builder.build());
@@ -140,7 +140,7 @@ public class HttpManager {
     }
 
     private File getCachedDir() {
-        return MyApplication.getInstance().getCacheDir();
+        return MyMultiDexApplication.getInstance().getCacheDir();
     }
 
     private static class SingletonHolder {

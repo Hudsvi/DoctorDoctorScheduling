@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+
+        android:id="@+id/paiban_main_ptr_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:ptr_pull_to_fresh="false"
+        app:ptr_ratio_of_header_height_to_refresh="1.2"
+        app:ptr_duration_to_close_header="200"
+        app:ptr_duration_to_close="200"
+        app:ptr_keep_header_when_refresh="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/paiban_list_recyclerview"
+        android:layout_width="match_parent"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:layout_height="match_parent"/>
+
+</in.srain.cube.views.ptr.PtrClassicFrameLayout>
+</android.support.constraint.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.animation.PropertyValuesHolder;
 import android.app.Dialog;
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -95,13 +96,14 @@ public class MyDateTimePicker {
             datePickerDialog.setCancelable(false);
             datePickerDialog.setContentView(R.layout.datetimepicker_dialog);
             Window window = datePickerDialog.getWindow();
-            window.setGravity(Gravity.BOTTOM);
+            window.setGravity(Gravity.CENTER);
             WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-            DisplayMetrics dm = new DisplayMetrics();
-            manager.getDefaultDisplay().getMetrics(dm);
+           /* DisplayMetrics dm = new DisplayMetrics();
+            manager.getDefaultDisplay().getMetrics(dm);*/
+            Display dp=manager.getDefaultDisplay();
             WindowManager.LayoutParams lp = window.getAttributes();
-            lp.width = dm.widthPixels;
-            lp.y=40;//Y轴上的偏移
+            lp.width = dp.getWidth();
+//            lp.y=40;//Y轴上的偏移
             window.setAttributes(lp);
         }
     }

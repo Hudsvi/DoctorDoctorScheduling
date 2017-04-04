@@ -1,10 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/doctor">
-
+    android:background="@color/bluedark">
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/pwd_forgot_title_cons"
+    android:layout_width="0dp"
+app:layout_constraintLeft_toLeftOf="parent"
+    android:background="@color/blue_mid_light"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/pwd_forgot_back"
+        android:padding="14dp"
+        android:src="@drawable/goback"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="@string/pwd_forgot"
+        android:gravity="center"
+        android:layout_marginLeft="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="12dp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_marginStart="4dp" />
+</android.support.constraint.ConstraintLayout>
     <android.support.constraint.ConstraintLayout
         android:id="@+id/id101"
         android:layout_width="wrap_content"
@@ -14,11 +46,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09">
+        app:layout_constraintTop_toBottomOf="@+id/pwd_forgot_title_cons"
+        app:layout_constraintVertical_bias="0.060000002">
 
         <EditText
-            android:id="@+id/id103"
+            android:id="@+id/pwd_forgot_phone_et"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -53,7 +85,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/id104"
+            android:id="@+id/pwd_forgot_del_phone"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_marginEnd="8dp"
@@ -96,8 +128,8 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/id108"
-                android:layout_width="136dp"
+                android:id="@+id/pwd_forgot_verify_code"
+                android:layout_width="108dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginLeft="8dp"
@@ -117,23 +149,30 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/id109"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:id="@+id/pwd_forgot_verify_code_del"
+                android:layout_width="20dp"
+                android:layout_height="48dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="18dp"
+                android:paddingLeft="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:src="@drawable/delete"
+                app:layout_constraintLeft_toRightOf="@+id/pwd_forgot_verify_code"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
         <Button
-            android:id="@+id/id1010"
+            android:id="@+id/pwd_forgot_send_ver_code"
             android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:maxLines="1"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/bt_key"
@@ -155,7 +194,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id105"
-        app:layout_constraintVertical_bias="0.022">
+        app:layout_constraintVertical_bias="0.023">
 
         <ImageView
             android:id="@+id/id1012"
@@ -169,7 +208,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/id1013"
+            android:id="@+id/pwd_forgot_new_pwd"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -192,7 +231,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/id1014"
+            android:id="@+id/pwd_forgot_new_pwd_del"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_marginEnd="8dp"
@@ -227,7 +266,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/id17"
+            android:id="@+id/pwd_forgot_new_pwd2"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -250,7 +289,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/id1018"
+            android:id="@+id/pwd_forgot_new_pwd_del2"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_marginEnd="8dp"
@@ -263,7 +302,7 @@
 
     <Button
         android:id="@+id/sup_ok"
-        android:layout_width="240dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bt_signin"
         android:text="@string/pwd_forgot"
@@ -274,5 +313,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id1015"
-        app:layout_constraintVertical_bias="0.060000002" />
+        app:layout_constraintVertical_bias="0.8" />
 </android.support.constraint.ConstraintLayout>

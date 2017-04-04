@@ -14,16 +14,19 @@ import java.util.List;
  * Created by Hudsvi on 2017/2/18 13:37.
  */
 
-public abstract class MyFragmentPagerAdapter extends PagerAdapter implements View.OnClickListener, ViewPager.OnPageChangeListener {
-    private List<android.app.Fragment> frags;
+public class MyFragmentPagerAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
+    private List<Fragment> frags;
+    private FragmentManager fmanager;
+    private MyOnPageChangedListener listener;
+    private NoScrollViewPager viewPager;
     private String[] titles;
-    private android.app.FragmentManager fmanager;
-    private MyOnPageChangedListener pagechanged;
-
-    public MyFragmentPagerAdapter(android.app.FragmentManager fmanager, List<android.app.Fragment> frags, String[] titles) {
+    private FragmentTransaction fTransaction;
+    private int currentView=0;//------------默认为初始位置
+    public MyFragmentPagerAdapter(FragmentManager fmanager, List<Fragment> frags,NoScrollViewPager viewPager) {
         this.fmanager = fmanager;
         this.frags = frags;
-        this.titles = titles;
+        this.viewPager=viewPager;
+        this.viewPager.setOnPageChangeListener(this);
     }
 
     @Override
@@ -39,10 +42,11 @@ public abstract class MyFragmentPagerAdapter extends PagerAdapter implements Vie
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        android.app.Fragment frag = frags.get(position);
+        Fragment frag = frags.get(position);
+        frag.setMenuVisibility(true);
         if (!frag.isAdded()) {
-            android.app.FragmentTransaction fTransaction = fmanager.beginTransaction();
-            fTransaction.add(frag,null);
+            fTransaction = fmanager.beginTransaction();
+            fTransaction.add(frag, frag.getClass().getSimpleName());
             fTransaction.commitAllowingStateLoss();
             fmanager.executePendingTransactions();
             if (frag.getView().getParent() == null) {
@@ -58,37 +62,40 @@ public abstract class MyFragmentPagerAdapter extends PagerAdapter implements Vie
         return frags == null ? 0 : frags.size();
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return titles == null ? "" : titles[position];
-    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        pagechanged.mPageScrolled(position, positionOffset, positionOffsetPixels);
+        if(listener !=null) {
+            listener.mPageScrolled(position, positionOffset, positionOffsetPixels);
+        }
     }
 
     @Override
     public void onPageSelected(int position) {
-        pagechanged.mPageSelected(position);
+        frags.get(currentView).onPause();//-----------暂停
+        if(frags.get(position).isAdded()){
+            frags.get(position).onResume();//--------运行
+        }
+        currentView=position;
+        if(listener !=null){
+            listener.mPageSelected(position);
+        }
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        pagechanged.mPageScrollStateChanged(state);
+        if(listener !=null) {
+            listener.mPageScrollStateChanged(state);
+        }
     }
 
-    @Override
-    public void onClick(View v) {
 
+    public MyOnPageChangedListener getListener() {
+        return listener;
     }
 
-    public MyOnPageChangedListener getPagechanged() {
-        return pagechanged;
-    }
-
-    public void setPagechanged(MyOnPageChangedListener pagechanged) {
-        this.pagechanged = pagechanged;
+    public void setListener(MyOnPageChangedListener listener) {
+        this.listener = listener;
     }
 
     public String[] getTitles() {

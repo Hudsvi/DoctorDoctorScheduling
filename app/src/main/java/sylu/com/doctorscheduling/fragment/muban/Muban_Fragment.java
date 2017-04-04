@@ -1,14 +1,9 @@
 package sylu.com.doctorscheduling.fragment.muban;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,21 +18,25 @@ import butterknife.OnClick;
 import butterknife.OnItemClick;
 import butterknife.OnItemLongClick;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import sylu.com.doctorscheduling.BaseFragment;
 import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.constants.Constants;
-import sylu.com.doctorscheduling.custom.muban.Doctor_List_Item;
-import sylu.com.doctorscheduling.custom.muban.MyArrayAdapter;
+import sylu.com.doctorscheduling.custom.MyPtrHeader;
+import sylu.com.doctorscheduling.custom.muban.Doctor_Muban_List_Item;
+import sylu.com.doctorscheduling.custom.muban.Muban_MyArrayAdapter;
 import sylu.com.doctorscheduling.main.muban.Doctor_Details_Activity;
 import sylu.com.doctorscheduling.main.muban.ListContract;
+import sylu.com.doctorscheduling.view.ultra_ptr.PtrDefaultHandler2;
 
 /**
  * Created by Hudsvi on 2017/2/17 17:21.
  */
 
 public class Muban_Fragment extends BaseFragment implements ListContract{
-    List<Doctor_List_Item> lists;
-    private MyArrayAdapter adapter;
+    List<Doctor_Muban_List_Item> lists;
+    private Muban_MyArrayAdapter adapter;
 
     @BindView(R.id.muban_workday_state)
     RadioButton mubanWorkdayState;
@@ -77,7 +76,7 @@ public class Muban_Fragment extends BaseFragment implements ListContract{
     ListView mubanMainDoctorListview;
     @BindView(R.id.muban_main_ptr_content)
     PtrClassicFrameLayout mubanMainPtrContent;
-
+    private PtrHandler ptr_handler;
     @Override
     protected int getLayoutView() {
         return R.layout.muban_doctor_list;
@@ -86,19 +85,39 @@ public class Muban_Fragment extends BaseFragment implements ListContract{
     @Override
     protected void initViews(Bundle savedInstanceState) {
         initData();
-        adapter = new MyArrayAdapter(getmContext(), R.layout.muban_doctor_info_item, lists, this);
+        adapter = new Muban_MyArrayAdapter(getmContext(), R.layout.muban_doctor_info_item, lists, this);
         mubanMainDoctorListview.setAdapter(adapter);
+        initPtr();
+    }
+
+    private void initPtr() {
+        ptr_handler=new PtrDefaultHandler2() {
+            @Override
+            public void onLoadMoreBegin(PtrFrameLayout frame) {
+
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+
+            }
+        };
+        MyPtrHeader header=new MyPtrHeader(getContext());
+        mubanMainPtrContent.setPtrHandler(ptr_handler);
+        mubanMainPtrContent.setHeaderView(header);
+        mubanMainPtrContent.addPtrUIHandler(header);
+        mubanMainPtrContent.disableWhenHorizontalMove(true);
     }
 
     private void initData() {
-        lists = new ArrayList<Doctor_List_Item>();
-        Doctor_List_Item info1 = new Doctor_List_Item("姓名1");
-        Doctor_List_Item info2 = new Doctor_List_Item("姓名2");
-        Doctor_List_Item info3 = new Doctor_List_Item("姓名3");
-        Doctor_List_Item info4 = new Doctor_List_Item("姓名4");
-        Doctor_List_Item info5 = new Doctor_List_Item("姓名5");
-        Doctor_List_Item info6 = new Doctor_List_Item("姓名6");
-        Doctor_List_Item info7 = new Doctor_List_Item("姓名7");
+        lists = new ArrayList<Doctor_Muban_List_Item>();
+        Doctor_Muban_List_Item info1 = new Doctor_Muban_List_Item("姓名1");
+        Doctor_Muban_List_Item info2 = new Doctor_Muban_List_Item("姓名2");
+        Doctor_Muban_List_Item info3 = new Doctor_Muban_List_Item("姓名3");
+        Doctor_Muban_List_Item info4 = new Doctor_Muban_List_Item("姓名4");
+        Doctor_Muban_List_Item info5 = new Doctor_Muban_List_Item("姓名5");
+        Doctor_Muban_List_Item info6 = new Doctor_Muban_List_Item("姓名6");
+        Doctor_Muban_List_Item info7 = new Doctor_Muban_List_Item("姓名7");
         lists.add(info1);
         lists.add(info2);
         lists.add(info3);
@@ -107,12 +126,13 @@ public class Muban_Fragment extends BaseFragment implements ListContract{
         lists.add(info6);
         lists.add(info7);
     }
-    @OnClick({R.id.muban_day_of_week1, R.id.muban_day_of_week2, R.id.muban_day_of_week3, R.id.muban_day_of_week4, R.id.muban_day_of_week5, R.id.muban_day_of_week6, R.id.muban_day_of_week7})
+    @OnClick({R.id.muban_day_of_week1, R.id.muban_day_of_week2, R.id.muban_day_of_week3,
+            R.id.muban_day_of_week4, R.id.muban_day_of_week5, R.id.muban_day_of_week6, R.id.muban_day_of_week7})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.muban_day_of_week1:
-                mubanWorkdayState.setChecked(false);
-                mubanWorkdayState.setText("休息日");
+                mubanWorkdayState.setChecked(true);
+                mubanWorkdayState.setText("工作日");
                 showNetLoadingDialog("加载中");
                 break;
             case R.id.muban_day_of_week2:
@@ -153,7 +173,7 @@ public class Muban_Fragment extends BaseFragment implements ListContract{
     }
     @OnItemLongClick(R.id.muban_main_doctor_listview)
     boolean longClicked(View view) {
-        MyArrayAdapter.ViewHolder listholder = (MyArrayAdapter.ViewHolder) view.getTag();
+        Muban_MyArrayAdapter.ViewHolder listholder = (Muban_MyArrayAdapter.ViewHolder) view.getTag();
         if (listholder.getDelete().getVisibility() == View.GONE) {
             listholder.getDelete().setVisibility(View.VISIBLE);
             return false;
@@ -163,7 +183,7 @@ public class Muban_Fragment extends BaseFragment implements ListContract{
 
     @OnItemClick(R.id.muban_main_doctor_listview)
     void onListItemCliked(View view){
-        MyArrayAdapter.ViewHolder listholder = (MyArrayAdapter.ViewHolder) view.getTag();
+        Muban_MyArrayAdapter.ViewHolder listholder = (Muban_MyArrayAdapter.ViewHolder) view.getTag();
         long user_id=listholder.getUser_id();
         String name=listholder.getName();
         Intent intent =new Intent(getmContext(),Doctor_Details_Activity.class);
@@ -174,7 +194,7 @@ public class Muban_Fragment extends BaseFragment implements ListContract{
     }
 
     @Override
-    public void delete(long user_id,int position, MyArrayAdapter.ViewHolder holder) {
+    public void delete(long user_id,int position, Muban_MyArrayAdapter.ViewHolder holder) {
         holder.getDelete().setVisibility(View.GONE);
         showNetLoadingDialog("删除中");
         //
@@ -187,7 +207,7 @@ public class Muban_Fragment extends BaseFragment implements ListContract{
     }
 
     @Override
-    public void cancel(MyArrayAdapter.ViewHolder holder) {
+    public void cancel(Muban_MyArrayAdapter.ViewHolder holder) {
         holder.getDelete().setVisibility(View.GONE);
         Toast.makeText(getmContext(), "canceled", Toast.LENGTH_SHORT).show();
     }

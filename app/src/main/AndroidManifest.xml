@@ -9,34 +9,35 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
+        android:name=".custom.MyMultiDexApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/logo"
+        android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".debug.Test_layout"
+            android:name=".main.SplashActivity"
+            android:taskAffinity="sylu.com.doctorscheduling"
             android:theme="@style/splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".debug.Test_Layout2" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
+        <activity android:name=".debug.Test_Layout2" />
         <activity android:name=".debug.Test" />
         <activity android:name=".main.muban.Doctor_List_Activity" />
 
         <activity
             android:name=".main.MainActivity"
-            android:theme="@style/Theme.Login" />
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Light"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".main.LoginActivity"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.Login" />
         <activity
             android:name=".main.SignupActivity"

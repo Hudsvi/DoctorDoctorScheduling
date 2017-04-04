@@ -24,9 +24,9 @@ public class MySharedPreferences {
     private static SharedPreferences spre;
     private static SharedPreferences.Editor editor;
 
-    public static MySharedPreferences getInstance() {
+    public static MySharedPreferences getInstance(Context context) {
         if (spre == null) {
-            spre = MyApplication.getInstance().getSharedPreferences(SHARED_PREFS_LOCATION, 0);
+            spre = context.getSharedPreferences(SHARED_PREFS_LOCATION, 0);
             editor = spre.edit();
         }
         if (sp == null) {

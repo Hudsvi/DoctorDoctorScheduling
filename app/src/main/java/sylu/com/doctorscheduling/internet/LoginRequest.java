@@ -20,7 +20,7 @@ public class LoginRequest implements Serializable{
 
     public LoginRequest(String login_name, String password, String device_token) {
         this.login_name = login_name;
-        this.password = MD5Utils.EncryptOrDecryptByMD5(password);
+        this.password = password;
         this.device_token = device_token;
     }
 

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import sylu.com.doctorscheduling.view.UIForeRunner;
 /**
  * Created by Hudsvi on 2017/2/18 13:22.
  */
-public abstract class BaseFragment extends android.app.Fragment implements DialogInterface.OnCancelListener{
+public abstract class BaseFragment extends Fragment implements DialogInterface.OnCancelListener {
     protected UIForeRunner foreRunner;
     protected View rtView;
 
@@ -32,7 +33,7 @@ public abstract class BaseFragment extends android.app.Fragment implements Dialo
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rtView = LayoutInflater.from(getActivity()).inflate(getLayoutView(),container,false);
+        rtView = LayoutInflater.from(getActivity()).inflate(getLayoutView(), container, false);
         ButterKnife.bind(this, rtView);
         initViews(savedInstanceState);
         return rtView;
@@ -45,16 +46,18 @@ public abstract class BaseFragment extends android.app.Fragment implements Dialo
     }
 
     protected abstract void initViews(Bundle savedInstanceState);
+
     public void showNetLoadingDialog() {
         showNetLoadingDialog("");
     }
 
     public void showNetLoadingDialog(String loadingState) {
-        foreRunner=new UIForeRunner(new WeakReference<Activity>(getActivity()));
-        foreRunner.showNetLoadingDialog(loadingState,this);
+        foreRunner = new UIForeRunner(new WeakReference<Activity>(getActivity()));
+        foreRunner.showNetLoadingDialog(loadingState, this);
     }
-    public void dissmissNetLoadingDialog(){
-        if(foreRunner!=null&&foreRunner.isShowing()){
+
+    public void dissmissNetLoadingDialog() {
+        if (foreRunner != null && foreRunner.isShowing()) {
             foreRunner.dissmissNetLoadingDialog();
         }
     }

@@ -22,6 +22,15 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements DialogInterf
     private Context context;
     private boolean showDialog;
 
+    private String getLoading() {
+        return loading;
+    }
+
+    public void setLoading(String loading) {
+        this.loading = loading;
+    }
+
+    private String loading;
     public ProgressSubscriber(SubscriberOnNextListener listener, Context context) {
         this(listener, context, true);
 
@@ -44,7 +53,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements DialogInterf
     @Override
     public void onStart() {
         super.onStart();
-        showNetDialog();
+        showNetDialog(getLoading());
 
     }
 
@@ -60,6 +69,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements DialogInterf
         } else if (e instanceof ConnectException) {
             Toast.makeText(context,context.getString(R.string.net_connecting_erro),Toast.LENGTH_SHORT ).show();
         } else {
+            Toast.makeText(context, "无法连接到服务器^_^"+e.toString(), Toast.LENGTH_SHORT).show();
             LogUtils.d(this.getClass().getSimpleName(),e.getCause() + " :" + e.getMessage());
         }
     }
@@ -67,16 +77,13 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements DialogInterf
     @Override
     public void onNext(Object o) {
         if (listener != null) {
+            dissmissDialog();
             listener.onNext(o);
         }
     }
 
-    public void showNetDialog() {
-        if (showDialog)
-            showNetDialog(null);
-    }
-
     public void showNetDialog(String netinfo) {
+        if (showDialog)
         foreRunner.showNetLoadingDialog(netinfo, this);
     }
 

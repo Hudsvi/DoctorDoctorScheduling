@@ -8,7 +8,6 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import sylu.com.doctorscheduling.constants.Constants;
-import sylu.com.doctorscheduling.custom.MyApplication;
 import sylu.com.doctorscheduling.custom.MySharedPreferences;
 
 /**
@@ -24,7 +23,7 @@ public class CookieInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         final Request.Builder builder=chain.request().newBuilder();
-        String cookies= MySharedPreferences.getInstance().getStringValue(Constants.COOKIE);
+        String cookies= MySharedPreferences.getInstance(context).getStringValue(Constants.COOKIE);
         if(!cookies.isEmpty()){
             builder.addHeader("APPCookie",cookies);
         }

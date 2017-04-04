@@ -43,12 +43,12 @@ public class PhoneManager {
 
         TelephonyManager tm = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
         String device_id = tm.getDeviceId();
-        if (isEmpty(device_id)) {
+        if (containEmpty(device_id)) {
             WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
             String mac = wifi.getConnectionInfo().getMacAddress();
             device_id = mac;
         }
-        if(isEmpty(device_id)){
+        if(containEmpty(device_id)){
             String id=Settings.Secure.getString(context.getContentResolver(),Settings.Secure.ANDROID_ID);
             device_id=id ;
         }
@@ -58,23 +58,16 @@ public class PhoneManager {
 
     /**
      * 判断给定字符串是否空白串。
-     * 空白串是指由空格、制表符、回车符、换行符组成的字符串
-     * 若输入字符串为null或空字符串，返回true
+     * 空白串是指:空格||null||空字符串，返回true。否则返回false
      *
      * @param input
      * @return boolean
      */
-    public static boolean isEmpty(String input) {
-        if (input == null || "".equals(input))
-            return true;
+    public static boolean containEmpty(String input) {
+        if (input == null || "".equals(input)||input.contains(" "))
+        {    return true;}
 
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            if (c != ' ' && c != '\t' && c != '\r' && c != '\n') {
-                return false;
-            }
-        }
-        return true;
+        return false;
     }
 
 
@@ -90,22 +83,22 @@ public class PhoneManager {
          */
         public static String getSDCardPath(String pathFile, Context context) {
             if (pathFile == null || EMPTY.equals(pathFile.trim())) return EMPTY;
-            String stornPath = null;
+            String storePath = null;
             String state = Environment.getExternalStorageState();
             if (Environment.MEDIA_MOUNTED.equals(state)) {
                 if (Environment.getExternalStorageDirectory().canWrite()) {
-                    stornPath = Environment.getExternalStorageDirectory().getPath();
+                    storePath = Environment.getExternalStorageDirectory().getPath();
                 }
             }
-            if ((stornPath == null) || (EMPTY.equalsIgnoreCase(stornPath.trim()))) {
+            if ((storePath == null) || (EMPTY.equalsIgnoreCase(storePath.trim()))) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-                    stornPath = getExtralcard(context);
+                    storePath = getExtralcard(context);
                 }
             }
 
-            if (stornPath != null) {
+            if (storePath != null) {
                 StringBuffer logPath = new StringBuffer();
-                logPath.append(stornPath);
+                logPath.append(storePath);
                 logPath.append(File.separator);
                 logPath.append(context.getPackageName())
                         .append(File.separator);

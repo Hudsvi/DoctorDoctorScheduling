@@ -5,10 +5,12 @@
     <color name="bg_static2">#4f4f87</color>
     <color name="bg_static3">#ff3a3a40</color>
     <color name="black">#ff000000</color>
-    <color name="black_yellow">#332d02</color>
+    <color name="black_yellow">#35321c</color>
     <color name="bluedark">#020229</color>
     <color name="blue_light">#37376c</color>
+    <color name="blue_tab_bottom">#FF8A8AEA</color>
     <color name="blue_mid_light">#515184</color>
+    <color name="blue_mid_light_alpha">#bc515184</color>
     <color name="blue_sma_light">#9494e6</color>
     <color name="blue_white_light">#d6e2f4</color>
     <color name="bt_signin_press">#ffb4b3b2</color>
@@ -21,6 +23,7 @@
     <color name="colorPrimary">#2543ba</color>
     <color name="colorPrimaryDark">#ff252315</color>
     <color name="green">#ff93c70e</color>
+    <color name="green_light">#bbe943</color>
     <color name="gray">#ffd2d2d4</color>
     <color name="purple">#ff664bc5</color>
     <color name="red">#ffef2e00</color>
@@ -35,5 +38,10 @@
     <color name="yellow">#f5d608</color>
     <color name="yellow_light">#fcf7e7</color>
     <color name="gray_classic">#ffd5d5d5</color>
+    <color name="gray_mid_dark">#b9b9b9</color>
+    <color name="gray_dark">#76757c</color>
+    <color name="gray_light">#f9f6ff</color>
+    <color name="gray_mid_light">#ececec</color>
+
     <color name="transparent">#00ffffff</color>
 </resources>
