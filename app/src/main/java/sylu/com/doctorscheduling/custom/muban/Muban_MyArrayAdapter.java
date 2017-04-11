@@ -31,16 +31,21 @@ public class Muban_MyArrayAdapter extends ArrayAdapter {
 
     public Muban_MyArrayAdapter(Context context, int resource, List<Doctor_Muban_List_Item> lists, ListContract contract) {
         super(context, resource, lists);
+        this.lists = lists;
         this.resourse_id = resource;
         this.context = context;
         this.contract = contract;
+    }
+
+    public void updateData(List<Doctor_Muban_List_Item> list) {
+        this.lists = list;
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        Doctor_Muban_List_Item info = (Doctor_Muban_List_Item) getItem(position);
+        Doctor_Muban_List_Item minfo = (Doctor_Muban_List_Item) getItem(lists.size()-position-1);
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(resourse_id, null);
             holder = new ViewHolder(convertView);
@@ -48,42 +53,46 @@ public class Muban_MyArrayAdapter extends ArrayAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        if (info != null) {
-            holder.doctor_name.setText(info.getDoctor_name());
-            holder.setName(info.getDoctor_name());
-            holder.setUser_id(1234 + position);//此处模拟标识id，可将登录账号作为唯一标识
-            holder.setPosition(position);
-        }
+        holder.doctor_name.setText(minfo.getDoctor_name());
+        holder.doctor_dept.setText("(所在科室:" + minfo.getDept() + ")");
+        holder.setDept(minfo.getDept());
+        holder.setDate(minfo.getDate());
+        holder.setName(minfo.getDoctor_name());
+        holder.setPosition(lists.size()-position-1);////
         return convertView;
     }
 
 
-    public class ViewHolder{
+    public class ViewHolder {
 
-        private long user_id;
+        private String date;
 
-        public int getPosition() {
-            return position;
-        }
-
-        public void setPosition(int position) {
-            this.position = position;
-        }
-
-        private int position;
-
+        private int position;//医生列表的position
 
         private String name;
+
+        private String dept;
+
+        public String getDept() {
+            return dept;
+        }
+
+        public void setDept(String dept) {
+            this.dept = dept;
+        }
+
         @BindView(R.id.muban_main_doctor_list_name)
         TextView doctor_name;
+        @BindView(R.id.muban_main_doctor_list_dept)
+        TextView doctor_dept;
         @BindView(R.id.muban_main_doctor_list_img)
         ImageView img_tag;
-
         @BindView(R.id.muban_main_doctor_list_del)
         ConstraintLayout delete;
-
         @BindView(R.id.muban_main_list_delete)
-        Button delete_itme;
+        Button delete_item;
+        @BindView(R.id.muban_main_list_update)
+        Button update_item;
 
         @BindView(R.id.muban_main_lsit_item_constraintlayout)
         ConstraintLayout list_item_layout;
@@ -95,6 +104,15 @@ public class Muban_MyArrayAdapter extends ArrayAdapter {
         public void setName(String name) {
             this.name = name;
         }
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
+
         public ConstraintLayout getList_item_layout() {
             return list_item_layout;
         }
@@ -104,11 +122,11 @@ public class Muban_MyArrayAdapter extends ArrayAdapter {
         }
 
         public Button getDelete_itme() {
-            return delete_itme;
+            return delete_item;
         }
 
-        public void setDelete_itme(Button delete_itme) {
-            this.delete_itme = delete_itme;
+        public void setDelete_itme(Button delete_item) {
+            this.delete_item = delete_item;
         }
 
         public TextView getDoctor_name() {
@@ -135,26 +153,31 @@ public class Muban_MyArrayAdapter extends ArrayAdapter {
             this.delete = delete;
         }
 
-        public long getUser_id() {
-            return user_id;
+        public String getDate() {
+            return date;
         }
 
-        public void setUser_id(long user_id) {
-            this.user_id = user_id;
+        public void setDate(String date) {
+            this.date = date;
         }
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
 
-        @OnClick({R.id.muban_main_list_delete,R.id.muban_main_list_cancel})
+        @OnClick({R.id.muban_main_list_delete, R.id.muban_main_list_cancel, R.id.muban_main_list_update})
         void onClick(View v) {
             switch (v.getId()) {
                 case R.id.muban_main_list_delete:
-                    contract.delete(user_id, position,this);
+                    contract.cancel(this);
+                    contract.delete(this);
                     break;
                 case R.id.muban_main_list_cancel:
                     contract.cancel(this);
+                    break;
+                case R.id.muban_main_list_update:
+                    contract.cancel(this);
+                    contract.update(this);
                     break;
                 default:
                     break;

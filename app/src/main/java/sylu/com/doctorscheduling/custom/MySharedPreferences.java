@@ -79,7 +79,6 @@ public class MySharedPreferences {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
     public  Object  getObject(String name){
         Object ob=null;

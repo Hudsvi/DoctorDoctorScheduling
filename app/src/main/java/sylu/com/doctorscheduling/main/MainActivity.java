@@ -1,6 +1,5 @@
 package sylu.com.doctorscheduling.main;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +21,7 @@ import sylu.com.doctorscheduling.BaseActivity;
 import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.custom.MyFragmentPagerAdapter;
 import sylu.com.doctorscheduling.custom.NoScrollViewPager;
-import sylu.com.doctorscheduling.fragment.yuyue.Yuyue_Fragment;
 import sylu.com.doctorscheduling.utils.manager.ActivityManager;
-import sylu.com.doctorscheduling.view.MenuDialog;
 
 /**
  * Created by Hudsvi on 2017/2/18 15:41.
@@ -53,6 +49,10 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     ImageView mubanMainImg;
     @BindView(R.id.muban_main_tv)
     TextView mubanMainTv;
+    @BindView(R.id.main_titlebar_right_tv)
+    TextView mainTitlebarRightTv;
+    @BindView(R.id.muban_doctor_add)
+    ImageView mubanDoctorAdd;
     @BindView(R.id.muban_main_lin)
     LinearLayout mubanMainLin;
     @BindView(R.id.paiban_main_img)
@@ -77,13 +77,17 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     NoScrollViewPager mainViewpager;
     @BindView(R.id.main_linearlayout)
     ConstraintLayout mainLinearlayout;
+    @BindView(R.id.main_titlebar_left_tv)
+    TextView mainTitlebarLeftTv;
+    @BindView(R.id.muban_date)
+    ConstraintLayout muban_date;
     private String[] titles;
     private List<Fragment> mfrags;
     private MyFragmentPagerAdapter adapter;
     private MainContract.Presenter presenter;
     private int index = 0;
     private long currenTime = 0;
-
+    public static int page;
 
     @Override
     protected void InitView(Bundle savedInstanceState) {
@@ -119,6 +123,23 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             public void mPageSelected(int position) {
                 presenter.setTabIcon(position, imgs, tvs);
                 index = position;
+                page = mainViewpager.getCurrentItem();
+                if (position == 0) {
+                    mainTitlebarMenu.setVisibility(View.VISIBLE);
+                    mainTitlebarLeftTv.setVisibility(View.VISIBLE);
+                } else {
+                    mainTitlebarMenu.setVisibility(View.GONE);
+                    mainTitlebarLeftTv.setVisibility(View.GONE);
+                }
+                if (position == 1) {
+                    mubanDoctorAdd.setVisibility(View.VISIBLE);
+                    muban_date.setVisibility(View.VISIBLE);
+                } else{ muban_date.setVisibility(View.GONE);
+                    mubanDoctorAdd.setVisibility(View.GONE);
+                }
+                if(position==2){
+
+                }
             }
 
             @Override
@@ -154,15 +175,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         }
     }
 
-    @OnClick({R.id.main_titlebar_textview, R.id.main_titlebar_user, R.id.main_titlebar_menu, R.id.yuyue_main_lin, R.id.muban_main_lin, R.id.paiban_main_lin, R.id.fuhe_main_lin, R.id.person_main_lin})
+    @OnClick({R.id.main_titlebar_textview, R.id.main_titlebar_user, R.id.yuyue_main_lin, R.id.muban_main_lin, R.id.paiban_main_lin, R.id.fuhe_main_lin, R.id.person_main_lin})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_titlebar_textview:
                 break;
             case R.id.main_titlebar_user:
-                break;
-            case R.id.main_titlebar_menu:
-                openMenu();
                 break;
             case R.id.yuyue_main_lin:
                 mainViewpager.setCurrentItem(0, true);
@@ -182,8 +200,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         }
     }
 
-    private void openMenu() {
+   /* private void openMenu() {
         if (mainViewpager.getCurrentItem() == 0) {
+            toast("select menu");
         } else if (mainViewpager.getCurrentItem() == 1) {
 
         } else if (mainViewpager.getCurrentItem() == 2) {
@@ -193,5 +212,10 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         } else if (mainViewpager.getCurrentItem() == 4) {
 
         }
+    }*/
+
+    private void toast(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
+
 }

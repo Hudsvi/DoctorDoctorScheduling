@@ -23,6 +23,14 @@ public class WarningDialog extends Dialog {
     private Context context;
     private View rootView;
     private View.OnClickListener listener;
+    public void setBack(String back) {
+        this.back.setText(back);
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm.setText(confirm);
+    }
+
     private TextView title;
     private TextView message;
     private TextView back;
@@ -57,6 +65,6 @@ public class WarningDialog extends Dialog {
         this.confirm = (TextView) this.findViewById(R.id.warning_dialog_confirm);
         this.back.setOnClickListener(listener);
         this.confirm.setOnClickListener(listener);
-
     }
+
 }

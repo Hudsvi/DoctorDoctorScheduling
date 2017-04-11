@@ -1,5 +1,8 @@
 package sylu.com.doctorscheduling.main.muban;
 
+import java.util.List;
+
+import sylu.com.doctorscheduling.custom.muban.Doctor_Muban_List_Item;
 import sylu.com.doctorscheduling.custom.muban.Muban_MyArrayAdapter;
 
 /**
@@ -7,6 +10,7 @@ import sylu.com.doctorscheduling.custom.muban.Muban_MyArrayAdapter;
  */
 
 public interface ListContract {
-    void delete(long user_id, int positon,Muban_MyArrayAdapter.ViewHolder holder);
+    void delete(Muban_MyArrayAdapter.ViewHolder holder);
     void cancel(Muban_MyArrayAdapter.ViewHolder holder);
+    void update(Muban_MyArrayAdapter.ViewHolder holder);
 }

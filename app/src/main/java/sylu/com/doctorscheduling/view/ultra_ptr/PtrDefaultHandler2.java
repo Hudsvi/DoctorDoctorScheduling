@@ -32,7 +32,7 @@ public abstract class PtrDefaultHandler2 extends PtrDefaultHandler implements Pt
     }
 
     /**
-     * Default implement for check can perform pull to refresh
+     * Default implement for check can perform pull to updateData
      *
      * @param frame
      * @param content

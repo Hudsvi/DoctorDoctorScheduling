@@ -4,12 +4,13 @@
     <color name="bg_static1">#ff3a3a5b</color>
     <color name="bg_static2">#4f4f87</color>
     <color name="bg_static3">#ff3a3a40</color>
-    <color name="black">#ff000000</color>
+    <color name="black">#000000</color>
+    <color name="black_alpha">#fc000000</color>
     <color name="black_yellow">#35321c</color>
     <color name="bluedark">#020229</color>
     <color name="blue_light">#37376c</color>
     <color name="blue_tab_bottom">#FF8A8AEA</color>
-    <color name="blue_mid_light">#515184</color>
+    <color name="blue_mid_light1">#515184</color>
     <color name="blue_mid_light_alpha">#bc515184</color>
     <color name="blue_sma_light">#9494e6</color>
     <color name="blue_white_light">#d6e2f4</color>
@@ -24,9 +25,11 @@
     <color name="colorPrimaryDark">#ff252315</color>
     <color name="green">#ff93c70e</color>
     <color name="green_light">#bbe943</color>
+    <color name="blue_mid_light">#3c9ed2</color>
     <color name="gray">#ffd2d2d4</color>
     <color name="purple">#ff664bc5</color>
     <color name="red">#ffef2e00</color>
+    <color name="red2">#d22240</color>
     <color name="red_light">#df5f40</color>
     <color name="red_light_plus">#d28572</color>
     <color name="sin_bg_edit">#ff080715</color>
@@ -35,13 +38,13 @@
     <color name="text_master">#ff161616</color>
     <color name="text_secondary">#ff949494</color>
     <color name="white">#ffffff</color>
-    <color name="yellow">#f5d608</color>
+    <color name="yellow">#917f06</color>
     <color name="yellow_light">#fcf7e7</color>
     <color name="gray_classic">#ffd5d5d5</color>
     <color name="gray_mid_dark">#b9b9b9</color>
     <color name="gray_dark">#76757c</color>
+    <color name="graydark">#252525</color>
     <color name="gray_light">#f9f6ff</color>
     <color name="gray_mid_light">#ececec</color>
-
     <color name="transparent">#00ffffff</color>
 </resources>

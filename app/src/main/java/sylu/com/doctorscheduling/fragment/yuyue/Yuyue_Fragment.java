@@ -44,6 +44,7 @@ import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.constants.Constants;
 import sylu.com.doctorscheduling.custom.MySharedPreferences;
 import sylu.com.doctorscheduling.internet.jdbc.SQLConnector;
+import sylu.com.doctorscheduling.main.MainActivity;
 import sylu.com.doctorscheduling.main.yuyue.YuyueContact;
 import sylu.com.doctorscheduling.main.yuyue.YuyuePresenter;
 import sylu.com.doctorscheduling.utils.DateTimeFormatUtils;
@@ -111,8 +112,6 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
             Button yuyueBt3;
     @BindView(R.id.yuyue_operator_hint)//---------------提示
             TextView yuyueOperatorHint;
-    @BindView(R.id.yuyue_date_range)
-    TextView yuyueDateRange;
     @BindView(R.id.yuyue_date_range1)//-----------有效期1
             TextView yuyueDateRange1;
     @BindView(R.id.yuyue_textView3)
@@ -189,10 +188,15 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                     toast("修改失败");
                     break;
                 case DELETE_SUCCESS:
+                    if(dele!=null&&dele.isShowing()){
+                    dele.dismiss();}
                     dissmissNetLoadingDialog();
                     toast("删除成功");
                     break;
                 case DELETE_ERRO:
+                    if(dele!=null&&dele.isShowing()){
+                        dele.dismiss();
+                    }
                     dissmissNetLoadingDialog();
                     toast("删除失败");
                     break;
@@ -227,8 +231,8 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
         presenter = new YuyuePresenter(this);
         initList();
         ennableEdit(false);
-        menu = (ImageView) getActivity().findViewById(R.id.main_titlebar_menu);
-        menu.setOnClickListener(this);
+        /*menu = (ImageView) getActivity().findViewById(R.id.main_titlebar_menu);
+        menu.setOnClickListener(this);////*/
         if (NetUtils.isNetworkAvailable(getContext())) {
             showNetLoadingDialog("加载中");
             getDepart();
@@ -262,16 +266,19 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_titlebar_menu://-------------菜单
-                if (dialog != null && dialog.isShowing()) {
-                    dialog.dismiss();
-                } else if (dialog != null && !dialog.isShowing()) {
-                    dialog.show();
-                } else if (dialog == null) {
-                    dialog = new MenuDialog(getContext(), this);
-                    dialog.setCanceledOnTouchOutside(true);/////
-                    dialog.setItemIMGandTV1(R.drawable.fuhe, "打开设置");
-                    dialog.setItemIMGandTV2(R.drawable.fuhe, "隐藏设置");
-                    dialog.show();
+                if(MainActivity.page==0) {
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    } else if (dialog != null && !dialog.isShowing()) {
+                        dialog.show();
+                    } else if (dialog == null) {
+                        dialog = new MenuDialog(getContext(), this);
+                        dialog.setCanceledOnTouchOutside(true);/////
+                        dialog.setItemIMGandTV1(R.drawable.fuhe, "打开设置");
+                        dialog.setItemIMGandTV2(R.drawable.fuhe, "隐藏设置");
+                        dialog.setItemIMGandTV3(R.drawable.refresh,"刷新");
+                        dialog.show();
+                    }
                 }
                 break;
             case R.id.menu_main_item1_ll://打开预约设置
@@ -326,6 +333,17 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
+                break;
+            case R.id.menu_main_item3_ll:
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+                if(NetUtils.isNetworkAvailable(getContext())){
+                    showNetLoadingDialog("刷新中");
+                    getDepart();
+                }else{
+                    toast("无法连接到服务器");}
+
                 break;
             case R.id.yuyue_date_choosing:
 //                String date1 = DateTimeFormatUtils.getDatetimeInstance()
@@ -398,6 +416,7 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                         doDeleteReservationInfo();//---------警告框确认按钮，删除预约信息
                     } else {
                         dissmissNetLoadingDialog();
+                        dele.dismiss();
                         toast("无法连接到服务器");
                     }
                 }
@@ -424,8 +443,8 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                 break;
             case R.id.yuyue_bt2://删除按钮
                 dele = new WarningDialog(getContext(), this);
-                dele.setMessage("确认删除以下信息？"+"【科室】"+selected_dept+"【预约日期】"
-                        +yuyueDateRange.getText().toString());
+                dele.setMessage("确认删除以下预约设置？\n"+"【科室:】"+selected_dept+"\n【预约日期:】"
+                        +yuyueDateRange1.getText().toString());
                 dele.show();
                 break;
             case R.id.yuyue_bt3://清空按钮
@@ -511,12 +530,12 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                         pre_sta.setString(1, selected_dept);
                         pre_sta.setString(2, validateDate1);
                         pre_sta.executeUpdate();
+                        sendmessage(DELETE_SUCCESS, null);
                     } catch (Exception e) {
                         sendmessage(DELETE_ERRO, null);
                     } finally {
                         closeSQL();
                     }
-                    sendmessage(DELETE_SUCCESS, null);
                 }
             }.start();
         }else{
@@ -541,19 +560,20 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                 try {
                     if (!phone.equals("")) {
                         pre_sta = conn.prepareStatement("select dept_no from" +
-                                " doctor_dept where dept_user=?");
+                                " admin_dept where dept_user=?");
                         pre_sta.setString(1, phone);
                         rs = pre_sta.executeQuery();
                         while (rs.next()) {
                             dept_ls.add(rs.getString("dept_no"));
                         }
+                        sendmessage(DEPT_SUCCESS, null);//--------查询成功回调
                     }
                 } catch (Exception e) {
-//                        sendmessage(ERRO, null);
+                    dissmissNetLoadingDialog();
+                        sendmessage(ERRO, null);
                 } finally {
                     closeSQL();
                 }
-                sendmessage(DEPT_SUCCESS, null);//--------查询成功回调
             }
         }.start();
     }
@@ -614,12 +634,12 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                         reser_map.put("pre_day", rs.getString(7));
                         reser_map.put("def_times", rs.getString(8));
                     }
+                    sendmessage(RESER_SUCCESS, null);
                 } catch (Exception e) {
                     sendmessage(ERRO, null);
                 } finally {
                     closeSQL();
                 }
-                sendmessage(RESER_SUCCESS, null);
             }
         }.start();
 
@@ -706,12 +726,12 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
                         pre_sta.setString(7, defaulttimes);
                         pre_sta.setString(8, selected_dept);
                         pre_sta.executeUpdate();
+                        sendmessage(UPDATE_SUCCESS, null);
                     } catch (Exception e) {
                         sendmessage(UPDATE_ERRO, null);
                     } finally {
                         closeSQL();
                     }
-                    sendmessage(UPDATE_SUCCESS, null);
                 }
             }.start();
         }else{
@@ -727,6 +747,15 @@ public class Yuyue_Fragment extends BaseFragment implements YuyueContact.View, V
 
     @Override
     public void setPresenter(YuyueContact.Presenter presenter) {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(MainActivity.page==0) {
+            menu = (ImageView) getActivity().findViewById(R.id.main_titlebar_menu);
+            menu.setOnClickListener(this);
+        }
     }
 
     private void sendmessage(int what, Object ob) {

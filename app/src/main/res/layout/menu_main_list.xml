@@ -219,7 +219,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/back"
+        android:text="@string/cancel"
         android:textColor="@color/gray"
         android:textSize="18sp" />
 </LinearLayout>

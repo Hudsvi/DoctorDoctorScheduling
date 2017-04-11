@@ -14,6 +14,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrUIHandler;
 import in.srain.cube.views.ptr.indicator.PtrIndicator;
@@ -75,21 +78,20 @@ public class MyPtrHeader extends FrameLayout implements PtrUIHandler {
 
     @Override
     public void onUIReset(PtrFrameLayout frame) {
-        if (time.getVisibility() == VISIBLE)
-            time.setVisibility(GONE);
-        if (arrow.getVisibility() == VISIBLE)
-            arrow.setVisibility(GONE);
+        /////
         if (rotate.getVisibility() == VISIBLE)
             rotate.setVisibility(GONE);
     }
 
     @Override
     public void onUIRefreshPrepare(PtrFrameLayout frame) {
-        if (title.getVisibility() == GONE)
-            title.setVisibility(VISIBLE);
-        title.setText(ptr_pull);
-        if (time.getVisibility() == GONE)
-            time.setVisibility(VISIBLE);
+        if (title.getVisibility() == GONE) {
+            title.setVisibility(VISIBLE);}
+            title.setText(ptr_pull);
+        if (time.getVisibility() == GONE) {
+            time.setVisibility(VISIBLE);}
+            String lastUpdateTime = MySharedPreferences.getInstance(getContext()).getStringValue(Constants.MUBAN_D_LAST_UPDATE_TIME);
+            time.setText(lastUpdateTime);
         if (arrow.getVisibility() == GONE)
             arrow.setVisibility(VISIBLE);
         if (rotate.getVisibility() == View.VISIBLE) {
@@ -107,9 +109,9 @@ public class MyPtrHeader extends FrameLayout implements PtrUIHandler {
         if (rotate.getVisibility() == GONE) {
             rotate.setVisibility(View.VISIBLE);
         }
-            anim = AnimationUtils.loadAnimation(getContext(), R.anim.loading);
-            anim.setInterpolator(new LinearInterpolator());
-            rotate.startAnimation(anim);
+        anim = AnimationUtils.loadAnimation(getContext(), R.anim.loading);
+        anim.setInterpolator(new LinearInterpolator());
+        rotate.startAnimation(anim);
 
     }
 
@@ -120,7 +122,9 @@ public class MyPtrHeader extends FrameLayout implements PtrUIHandler {
         }
         rotate.setVisibility(View.GONE);
         title.setText(ptr_complete);
-
+        SimpleDateFormat format = new SimpleDateFormat("最后刷新时间:" + "MM-dd HH:mm:ss");
+        String last_time = format.format(new Date());
+        MySharedPreferences.getInstance(getContext()).putStringValue(Constants.MUBAN_D_LAST_UPDATE_TIME, last_time);
     }
 
     @Override

@@ -10,9 +10,7 @@ public class Doctor_Muban_Details implements Serializable{
     private String diagnose_am;
     private String start_am;
     private String end_am;
-
     private String amount_am;
-
     private String diagnose_pm;
 
     public String getStart_pm() {

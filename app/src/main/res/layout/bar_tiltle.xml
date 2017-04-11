@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/blue_mid_light">
+    android:layout_height="wrap_content">
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
+        android:background="@color/blue_mid_light"
         android:layout_width="match_parent"
         android:layout_height="48dp">
         <android.support.constraint.ConstraintLayout
@@ -15,6 +17,47 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/muban_date"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                >
+                <TextView
+                    android:text="04月"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:id="@+id/muban_title_bar_month"
+                    android:textSize="32sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+                <TextView
+                    android:text="14周"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:id="@+id/muban_title_bar_week"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="@+id/muban_title_bar_month"
+                    app:layout_constraintLeft_toRightOf="@+id/muban_title_bar_month"
+                    android:layout_marginTop="4dp" />
+                <TextView
+                    android:text="2017年"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:id="@+id/muban_title_bar_year"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/muban_title_bar_month"
+                    app:layout_constraintLeft_toRightOf="@+id/muban_title_bar_month"
+                    android:layout_marginBottom="4dp" />
+            </android.support.constraint.ConstraintLayout>
             <TextView
                 android:id="@+id/main_titlebar_textview"
                 android:layout_width="wrap_content"
@@ -28,17 +71,56 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
+            <TextView
+                android:id="@+id/main_titlebar_left_tv"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="预约设置"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/main_titlebar_user"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/main_titlebar_user" />
+            <TextView
+                android:id="@+id/main_titlebar_right_tv"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:text="医生列表"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
             <ImageView
                 android:id="@+id/main_titlebar_user"
-                android:layout_width="48dp"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/person"
                 android:paddingTop="12dp"
+                android:paddingRight="24dp"
                 android:paddingBottom="12dp"
+                android:visibility="gone"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
+            <ImageView
+                android:id="@+id/muban_doctor_add"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_more"
+                android:paddingTop="14dp"
+                android:visibility="gone"
+                android:paddingBottom="14dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <ImageView
                 android:id="@+id/main_titlebar_menu"
                 android:layout_width="48dp"
@@ -46,6 +128,8 @@
                 android:src="@drawable/menu"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,81 +138,3 @@
 
     </android.support.v7.widget.Toolbar>
 </FrameLayout>
-<!--<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
-    android:paddingTop="@dimen/topview_padding">
-
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/Toolbar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
-
-        <RelativeLayout
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:visibility="gone"
-                android:layout_centerVertical="true"
-                android:id="@+id/tv_toolbarleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/push_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:background="@drawable/new_msg_circle"
-                android:gravity="center"
-                android:text="2"
-                android:textColor="#fff"
-                android:textSize="8sp" />
-
-            <Button
-                android:visibility="gone"
-                android:id="@+id/btn_statues"
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/bg_btn_work"
-                android:text="@string/at_work" />
-
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/title"
-                android:text="@string/app_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textColor="@color/white"
-                android:textSize="18sp"/>
-
-            <ImageView
-                android:visibility="gone"
-                android:layout_centerVertical="true"
-                android:id="@+id/tv_toolbarright"
-                android:src="@drawable/icon_calendar"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.Toolbar>
-
-</FrameLayout>
-
-
--->

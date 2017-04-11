@@ -2,6 +2,7 @@ package sylu.com.doctorscheduling.utils;
 
 import android.content.Context;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,7 +17,7 @@ public class DateTimeFormatUtils {
     public   static final SimpleDateFormat MONTH_AND_YEAR=new SimpleDateFormat("yyyy-MM-dd");
     public   static final SimpleDateFormat DATE_TIME=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public   static final SimpleDateFormat WEEK_OF_MONTH=new SimpleDateFormat("'第'W'周'");
-//    private  static final SimpleDateFormat DAY_OF_WEEK=new SimpleDateFormat("星期U");
+//    private  static final SimpleDateFormat DAY_OF_WEEK=new SimpleDateFormat("u");
     private  static final SimpleDateFormat AM_OR_PM=new SimpleDateFormat("HH:mm:ss");
 //    private  static final SimpleDateFormat AM_OR_PM=new SimpleDateFormat("HH:mm:ss a");//a表示上午
     private static Calendar calendar;
@@ -54,13 +55,13 @@ public class DateTimeFormatUtils {
         }
         return MONTH_AND_YEAR.format(changeMSToDate(milliseconds));
     }
-    /*
-    public String getDayOfWeek(String milliseconds){
-        if(milliseconds.trim().length()!=13){
-            return "";
-        }
-        return DAY_OF_WEEK.format(changeMSToDate(milliseconds));
-    }*/
+//    public String getDayOfWeek(String date) throws ParseException {
+//        if(date==null){
+//            return "";
+//        }
+//        Date d=DAY_OF_WEEK.parse(date);
+//        return DAY_OF_WEEK.format(d);
+//    }
     public static String getWeekOfMonth(String milliseconds){
         if(milliseconds.trim().length()!=13){
             return "";

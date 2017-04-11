@@ -13,6 +13,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <RadioButton
             android:id="@+id/muban_workday_state"
             android:layout_width="wrap_content"
@@ -29,6 +30,30 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+<TextView
+    android:id="@+id/muban_date_today"
+    android:text="5号"
+    android:textSize="24sp"
+    android:textColor="@color/white"
+    android:layout_width="wrap_content"
+    app:layout_constraintTop_toTopOf="@+id/muban_date_today_tv"
+    android:layout_marginBottom="4dp"
+    android:layout_marginRight="2dp"
+    app:layout_constraintBottom_toBottomOf="@+id/muban_date_today_tv"
+    app:layout_constraintRight_toLeftOf="@+id/muban_date_today_tv"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="2dp" />
+<TextView
+    android:id="@+id/muban_date_today_tv"
+    android:textColor="@color/sup_ok"
+    app:layout_constraintTop_toTopOf="@+id/muban_workday_state"
+    app:layout_constraintRight_toRightOf="parent"
+    android:layout_marginRight="16dp"
+    app:layout_constraintBottom_toBottomOf="@+id/muban_workday_state"
+    android:background="@drawable/today"
+    android:layout_width="12dp"
+    android:layout_height="12dp"
+    android:layout_marginEnd="16dp" />
 
         <View
             android:layout_width="0dp"
@@ -50,26 +75,39 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_height="wrap_content">
             <RadioButton
-                android:id="@+id/muban_day_of_week1"
+                android:id="@+id/muban_day_of_week7"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:paddingTop="4dp"
                 android:gravity="center_horizontal"
-                android:text="下周一"
+                android:text="本周日"
                 android:paddingBottom="20dp"
                 android:button="@null"
-                android:checked="true"
                 android:textColor="@color/muban_week_bar"
                 android:background="@drawable/muban_week_bar"
                 android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/muban_day_of_week1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:checked="true"
+                android:text="下周一"
+                android:paddingBottom="20dp"
+                android:paddingTop="4dp"
+                android:gravity="center"
+                android:button="@null"
+                android:textColor="@color/muban_week_bar"
+                android:background="@drawable/muban_week_bar"
+                android:layout_height="wrap_content"/>
             <RadioButton
                 android:id="@+id/muban_day_of_week2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="14sp"
-                android:text="下周二"
                 android:paddingBottom="20dp"
+                android:text="下周二"
                 android:paddingTop="4dp"
                 android:gravity="center"
                 android:button="@null"
@@ -81,24 +119,24 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="14sp"
-                android:paddingBottom="20dp"
-                android:text="下周三"
                 android:paddingTop="4dp"
                 android:gravity="center"
+                android:text="下周三"
+                android:paddingBottom="20dp"
                 android:button="@null"
                 android:textColor="@color/muban_week_bar"
                 android:background="@drawable/muban_week_bar"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
             <RadioButton
                 android:id="@+id/muban_day_of_week4"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="14sp"
+                android:paddingBottom="20dp"
                 android:paddingTop="4dp"
                 android:gravity="center"
-                android:text="下周四"
-                android:paddingBottom="20dp"
                 android:button="@null"
+                android:text="下周四"
                 android:textColor="@color/muban_week_bar"
                 android:background="@drawable/muban_week_bar"
                 android:layout_height="wrap_content" />
@@ -106,38 +144,25 @@
                 android:id="@+id/muban_day_of_week5"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:textSize="14sp"
                 android:paddingBottom="20dp"
-                android:paddingTop="4dp"
+                android:textSize="14sp"
                 android:gravity="center"
+                android:paddingTop="4dp"
                 android:button="@null"
                 android:text="下周五"
-                android:textColor="@color/muban_week_bar"
-                android:background="@drawable/muban_week_bar"
-                android:layout_height="wrap_content" />
-            <RadioButton
-                android:id="@+id/muban_day_of_week6"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:paddingBottom="20dp"
-                android:textSize="14sp"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:button="@null"
-                android:text="下周六"
                 android:textColor="@color/muban_week_bar"
                 android:background="@drawable/muban_week_bar"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
-                android:id="@+id/muban_day_of_week7"
+                android:id="@+id/muban_day_of_week6"
                 android:layout_width="0dp"
                 android:paddingBottom="20dp"
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:paddingTop="4dp"
                 android:gravity="center"
-                android:text="下周日"
+                android:text="下周六"
                 android:button="@null"
                 android:textColor="@color/muban_week_bar"
                 android:background="@drawable/muban_week_bar"
@@ -217,10 +242,11 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
+
+
     </android.support.constraint.ConstraintLayout>
 
     <in.srain.cube.views.ptr.PtrClassicFrameLayout
-
         android:id="@+id/muban_main_ptr_content"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -236,8 +262,38 @@
         <ListView
             android:id="@+id/muban_main_doctor_listview"
             android:layout_width="match_parent"
+            android:scrollbars="none"
             android:divider="@color/bt_signin_static"
             android:dividerHeight="0.8dp"
             android:layout_height="match_parent" />
+
     </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+    <LinearLayout
+        android:id="@+id/muban_list_non_ll"
+        app:layout_constraintTop_toBottomOf="@+id/muban_main_bar_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="0dp">
+        <ImageView
+            android:background="@drawable/nolist"
+            android:layout_width="48dp"
+            android:layout_gravity="center"
+            android:layout_height="48dp" />
+        <TextView
+            android:id="@+id/muban_main_doctor_non_content_tv"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:hint="列表为空,请下拉刷新"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>

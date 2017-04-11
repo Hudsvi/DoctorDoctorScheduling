@@ -18,6 +18,7 @@
 
         <activity
             android:name=".main.SplashActivity"
+            android:screenOrientation="portrait"
             android:taskAffinity="sylu.com.doctorscheduling"
             android:theme="@style/splash">
             <intent-filter>
@@ -25,28 +26,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".debug.Test_Layout2" />
+        <activity
+            android:name=".debug.Test_Layout2"
+            android:screenOrientation="portrait" />
         <activity android:name=".debug.Test" />
-        <activity android:name=".main.muban.Doctor_List_Activity" />
 
         <activity
             android:name=".main.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.Light"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:theme="@style/Theme.Login"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".main.LoginActivity"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Login" />
         <activity
             android:name=".main.SignupActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Login" />
         <activity
             android:name=".main.ForgotPwdActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Login" />
         <activity
             android:name=".main.muban.Doctor_Details_Activity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Login" />
+        <activity
+            android:name=".main.muban.Doctor_AddName"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Login" />
+        <activity
+            android:name=".main.muban.DoctorDetails_Update_Activity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Login" />
     </application>
 
