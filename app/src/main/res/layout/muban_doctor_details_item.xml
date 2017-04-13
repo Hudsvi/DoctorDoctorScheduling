@@ -134,7 +134,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="8dp"
-            android:text="7"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/muban_details_amount_am_tv"
             app:layout_constraintLeft_toRightOf="@+id/muban_details_amount_am_tv"

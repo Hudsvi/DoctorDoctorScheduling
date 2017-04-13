@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="muban_details_diagnose_choosing"><item>是</item><item>否</item>
+    <string-array name="muban_details_diagnose_choosing"><item>否</item><item>是</item>
     </string-array>
     <string-array name="day_of_week"><item>下周一</item><item>下周二</item>
         <item>下周三</item><item>下周四</item><item>下周五</item><item>下周六</item><item>下周日</item>

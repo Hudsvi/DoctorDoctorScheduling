@@ -1,6 +1,7 @@
 package sylu.com.doctorscheduling.custom.paiban;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sylu.com.doctorscheduling.R;
+import sylu.com.doctorscheduling.main.paiban.Details_Activity;
 import sylu.com.doctorscheduling.utils.DateTimeFormatUtils;
 
 /**
@@ -23,7 +25,7 @@ import sylu.com.doctorscheduling.utils.DateTimeFormatUtils;
 public class Paiban_MyRecyclerViewAdapter extends RecyclerView.Adapter<Paiban_MyRecyclerViewAdapter.ViewHolder> implements RecyclerView.OnClickListener{
 
     private final Context context;
-    private final List<Doctor_Paiban_List_Item> lists;
+    private  List<Doctor_Paiban_List_Item> lists;
 
     public Paiban_MyRecyclerViewAdapter(Context context, List<Doctor_Paiban_List_Item> lists) {
         this.context=context;
@@ -38,18 +40,20 @@ public class Paiban_MyRecyclerViewAdapter extends RecyclerView.Adapter<Paiban_My
         holder=new ViewHolder(view);
         return holder;
     }
-
+    public void setData(List<Doctor_Paiban_List_Item> list){
+        this.lists=list;
+    }
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Doctor_Paiban_List_Item item=(Doctor_Paiban_List_Item)lists.get(position);
 //        holder.time01.setText(DateTimeFormatUtils.getDatetimeInstance().getAMPMOfDay(String.valueOf(item.getTime01())));
         holder.d_name.setText(item.getName());
-        holder.time01.setText("12:00:00");
-        holder.time02.setText("12:00:00");
-        holder.time11.setText("12:00:00");
-        holder.time12.setText("12:00:00");
-        holder.amount1.setText(String.valueOf(item.getAmount1()));
-        holder.amount2.setText(String.valueOf(item.getAmount2()));
+        holder.time01.setText(item.getTime01());
+        holder.time02.setText(item.getTime02());
+        holder.time11.setText(item.getTime21());
+        holder.time12.setText(item.getTime22());
+        holder.amount1.setText(item.getAmount1());
+        holder.amount2.setText(item.getAmount2());
     }
 
     @Override
@@ -82,6 +86,13 @@ public class Paiban_MyRecyclerViewAdapter extends RecyclerView.Adapter<Paiban_My
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i=new Intent(context, Details_Activity.class);
+                    context.startActivity(i);
+                }
+            });
         }
 
         public TextView getD_name() {

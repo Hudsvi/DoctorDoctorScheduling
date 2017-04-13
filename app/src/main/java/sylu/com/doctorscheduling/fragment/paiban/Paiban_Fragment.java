@@ -5,15 +5,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,30 +32,34 @@ import sylu.com.doctorscheduling.R;
 import sylu.com.doctorscheduling.custom.MyPtrHeader;
 import sylu.com.doctorscheduling.custom.paiban.Doctor_Paiban_List_Item;
 import sylu.com.doctorscheduling.custom.paiban.Paiban_MyRecyclerViewAdapter;
-import sylu.com.doctorscheduling.main.yuyue.YuyueContact;
+import sylu.com.doctorscheduling.internet.jdbc.SQLConnector;
+import sylu.com.doctorscheduling.utils.NetUtils;
+import sylu.com.doctorscheduling.view.MenuDialog;
 import sylu.com.doctorscheduling.view.ultra_ptr.PtrDefaultHandler2;
 
 /**
  * Created by Hudsvi on 2017/2/17 17:21.
  */
 
-public class Paiban_Fragment extends BaseFragment {
+public class Paiban_Fragment extends BaseFragment implements View.OnClickListener {
     @BindView(R.id.paiban_main_ptr_content)
     PtrClassicFrameLayout paibanMainPtrContent;
+    @BindView(R.id.paiban_non_ll)
+    LinearLayout paibanNonLl;
     private List<Doctor_Paiban_List_Item> lists;
     private Paiban_MyRecyclerViewAdapter adapter;
     private PtrHandler ptr_handler;
+    private ImageView img_menu;
+    private MenuDialog menuDialog;
+    private Connection conn;
+    private PreparedStatement pre_sta;
+    private ResultSet rs;
+    private static int count = 1;//默认生成排班月数
     @BindView(R.id.paiban_list_recyclerview)
     RecyclerView paibanListRecyclerview;
     private static final int ERRO = 0;//-----------错误处理
-    private static final int DEPT_SUCCESS = 1;//-----------科室获取成功
-    private static final int RESER_SUCCESS = 2;//-----------预约信息获取成功
-    private static final int ADD_SUCCESS = 3;//-----------预约信息新增成功
-    private static final int ADD_ERRO =4 ;//-----------------预约信息新增失败
-    private static final int UPDATE_SUCCESS = 5;//-----------预约信息修改成功
-    private static final int UPDATE_ERRO =6 ;//-----------------预约信息修改失败
-    private static final int DELETE_SUCCESS = 7;//-----------预约信息删除成功
-    private static final int DELETE_ERRO =8;//-----------------预约信息删除失败
+    private static final int SUCCESS = 1;//-----------获取成功
+
     private Handler han = new Handler() {
 
         @Override
@@ -58,34 +67,24 @@ public class Paiban_Fragment extends BaseFragment {
             switch (msg.what) {
                 case ERRO:
                     dissmissNetLoadingDialog();
-                    new AlertDialog.Builder(getContext()).setMessage("获取数据失败！请检查您的网络连接")
-                            .setTitle("提示")
-                            .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                                @Override
-                                public void onCancel(DialogInterface dialog) {
-                                    dialog.dismiss();
-                                }
-                            }).show();
+                    if (mframe != null && mframe.isRefreshing()) {
+                        mframe.refreshComplete();
+                    }
+                    toast("获取列表失败");
                     break;
-                case DEPT_SUCCESS:
+                case SUCCESS:
+                    dissmissNetLoadingDialog();
+                    if (mframe != null && mframe.isRefreshing()) {
+                        mframe.refreshComplete();
+                    }
+                    initAdapter();
                     break;
-                case RESER_SUCCESS://--------查询预约信息成功
-                    break;
-                case ADD_SUCCESS://----------添加成功
-                    break;
-                case ADD_ERRO://-----------添加失败
-                    break;
-                case UPDATE_SUCCESS:
-                    break;
-                case UPDATE_ERRO:
-                    break;
-                case DELETE_SUCCESS:
-                    break;
-                case DELETE_ERRO:
-                    break;
+
             }
         }
     };
+    private PtrFrameLayout mframe;
+
     @Nullable
     @Override
     protected int getLayoutView() {
@@ -109,7 +108,13 @@ public class Paiban_Fragment extends BaseFragment {
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-
+                mframe = frame;
+                if (NetUtils.isNetworkAvailable(getContext())) {
+                    showNetLoadingDialog("努力加载中");
+                    selectData();
+                } else {
+                    toast("无法连接到服务器");
+                }
             }
         };
 
@@ -121,35 +126,98 @@ public class Paiban_Fragment extends BaseFragment {
 
     }
 
+    private void selectData() {
+        lists = new ArrayList<>();
+        new Thread() {
+            @Override
+            public void run() {
+                conn = SQLConnector.getInstance(getContext()).initSQL();
+                try {
+                    pre_sta = conn.prepareStatement("select * from arrange");
+                    rs = pre_sta.executeQuery();
+                    while (rs.next()) {
+                        Doctor_Paiban_List_Item item = new Doctor_Paiban_List_Item();
+                        item.setName(rs.getString("doctor_name"));
+                        item.setTime01(rs.getString("am_start"));
+                        item.setTime02(rs.getString("am_end"));
+                        item.setTime21(rs.getString("am_count"));
+                        item.setTime22(rs.getString("pm_start"));
+                        item.setAmount1(rs.getString("pm_end"));
+                        item.setAmount2(rs.getString("pm_count"));
+                        lists.add(item);
+                    }
+                    sendmessage(SUCCESS, null);
+                } catch (Exception e) {
+                    sendmessage(ERRO, null);
+                } finally {
+                    closeSQL();
+                }
+            }
+        }.start();
+    }
+
+    private void toast(String s) {
+        Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+    }
+
     private void initAdapter() {
-        adapter = new Paiban_MyRecyclerViewAdapter(getmContext(), lists);
-        paibanListRecyclerview.setLayoutManager(new GridLayoutManager(getmContext(), 2));
-        paibanListRecyclerview.setAdapter(adapter);
+        if (adapter == null) {
+            adapter = new Paiban_MyRecyclerViewAdapter(getmContext(), lists);
+            paibanListRecyclerview.setLayoutManager(new GridLayoutManager(getmContext(), 2));
+            paibanListRecyclerview.setAdapter(adapter);
+        } else {
+            adapter.setData(lists);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void initData() {
-        //从数据库获取数据
-        //。。。。。。。。。。。。
+        img_menu = (ImageView) getActivity().findViewById(R.id.paiban_doctor_produce);
+        img_menu.setOnClickListener(this);
+        menuDialog = new MenuDialog(getContext(), this);
+        menuDialog.setItemIMGandTV1(R.drawable.fuhe, "排一个月");
+        menuDialog.setItemIMGandTV2(R.drawable.fuhe, "排两个月");
 
-        //模拟加载数据
-        //模拟数据
-        lists = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            Doctor_Paiban_List_Item item = new Doctor_Paiban_List_Item();
-            item.setName("陈若琳");
-            item.setTime01(new Date().getTime() + 3600000 * 13);
-            item.setTime02(new Date().getTime() + 3600000 * 16);
-            item.setTime21(new Date().getTime() + 3600000 * 19);
-            item.setTime22(new Date().getTime() + 3600000 * 23);
-            item.setAmount1(4);
-            item.setAmount2(6);
-            lists.add(item);
+
+    }
+
+
+    @OnClick({R.id.paiban_list_recyclerview})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.paiban_list_recyclerview:
+                break;
+            case R.id.paiban_doctor_produce:
+                menuDialog.show();
+                break;
+            case R.id.main_menu_back_linearlayout:
+                menuDialog.dismiss();
+                break;
+
+            case R.id.menu_main_item1_ll:
+                break;
+            case R.id.menu_main_item2_ll:
+                break;
         }
-
     }
 
-    @OnClick(R.id.paiban_list_recyclerview)
-    public void onClick() {
-
+    private void sendmessage(int what, Object ob) {
+        Message m = new Message();
+        m.what = what;
+        m.obj = ob;
+        han.sendMessage(m);
     }
+
+    private void closeSQL() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
 }

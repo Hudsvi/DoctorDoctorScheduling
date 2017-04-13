@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_height="48dp">
+        android:layout_height="56dp">
 
         <android.support.constraint.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -80,13 +80,13 @@
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/clip"
                 android:clickable="false"
-                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintLeft_toLeftOf="@+id/muban_detail_ll"
                 app:layout_constraintTop_toTopOf="@+id/muban_detail_ll"
                 app:layout_constraintBottom_toTopOf="@+id/muban_detail_ll"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintRight_toRightOf="@+id/muban_detail_ll"
                 app:layout_constraintHorizontal_bias="0.0"
-                android:layout_width="88dp"
-                android:layout_height="48dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="16dp" >
             </Button>
 

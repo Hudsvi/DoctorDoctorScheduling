@@ -101,6 +101,7 @@ public class Doctor_Details_Activity extends BaseActivity implements DetailsCont
     private String dept, d_name, date, week;//------------查询医生信息时必备的数据
     private Map<String, Object> doc_detail_map;
     private WarningDialog need_to_add_dialog;//------------医生信息
+    private String[]  info;//-----------------更新前的数据
     private String[] doc_info;//------------------------更新后的数据
     private Handler handler = new Handler() {
         @Override
@@ -132,14 +133,17 @@ public class Doctor_Details_Activity extends BaseActivity implements DetailsCont
         mubanDetailsDays.setText(date);//---------日期
         mubanDetailsDayOfWeek.setText(week);//----------星期
         mubanIsOrNotDiagnoseAm.setText(isDiagnosing(doc_detail_map.get("am").toString()));//上午
-        mubanDetailsStartTimeAm.setText(doc_detail_map.get("am_start").toString());
-        mubanDetailsEndTimeAm.setText(doc_detail_map.get("am_end").toString());
-        mubanDetailsAmountAm.setText(doc_detail_map.get("am_count").toString());
-        mubanIsOrNotDiagnoseAm.setText(isDiagnosing(doc_detail_map.get("pm").toString()));//下午
-        mubanDetailsStartTimeAm.setText(doc_detail_map.get("pm_start").toString());
-        mubanDetailsEndTimeAm.setText(doc_detail_map.get("pm_end").toString());
-        mubanDetailsAmountAm.setText(doc_detail_map.get("pm_count").toString());
-
+        mubanDetailsStartTimeAm.setText(booleanEmpty((String)doc_detail_map.get("am_start")));
+        mubanDetailsEndTimeAm.setText(booleanEmpty((String)doc_detail_map.get("am_end")));
+        mubanDetailsAmountAm.setText(booleanEmpty((String)doc_detail_map.get("am_count")));
+        mubanIsOrNotDiagnosePm.setText(isDiagnosing(doc_detail_map.get("pm").toString()));//下午
+        mubanDetailsStartTimePm.setText(booleanEmpty((String)doc_detail_map.get("pm_start")));
+        mubanDetailsEndTimePm.setText(booleanEmpty((String)doc_detail_map.get("pm_end")));
+        mubanDetailsAmountPm.setText(booleanEmpty((String)doc_detail_map.get("pm_count")));
+        info=new String[]{doc_detail_map.get("am").toString(),booleanEmpty((String)doc_detail_map.get("am_start")),
+                booleanEmpty((String)doc_detail_map.get("am_end")),booleanEmpty((String)doc_detail_map.get("am_count")),
+                doc_detail_map.get("pm").toString(),booleanEmpty((String)doc_detail_map.get("pm_start")),
+                booleanEmpty((String)doc_detail_map.get("pm_end")),booleanEmpty((String)doc_detail_map.get("pm_count"))};
 /*
 
     @BindView(R.id.muban_is_or_not_diagnose_pm)//------------下午
@@ -391,6 +395,7 @@ public class Doctor_Details_Activity extends BaseActivity implements DetailsCont
         Intent intent=new Intent(Doctor_Details_Activity.this,DoctorDetails_Update_Activity.class);
         intent.putExtra(Constants.MUBAN_DOCTOR_LIST_DATE,date);
         intent.putExtra(Constants.MUBAN_WEEK,week);
+        intent.putExtra(Constants.MUBAN_DETAILS_EDIT,info);
         startActivityForResult(intent,REQUEST_EDIT_CODE);
     }
 
@@ -465,18 +470,27 @@ public class Doctor_Details_Activity extends BaseActivity implements DetailsCont
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==REQUEST_EDIT_CODE&&resultCode==EDIT_OK){
-            if(data!=null){
-                doc_info=data.getStringArrayExtra(Constants.MUBAN_DOCTOR_DETAILS);
-                doUpdate(doc_info);
+            if(data!=null) {
+                if (NetUtils.isNetworkAvailable(this)) {
+                    doc_info = data.getStringArrayExtra(Constants.MUBAN_DOCTOR_DETAILS);
+                    doUpdate(doc_info);
+                }else{toast("无法连接到服务器");}
             }
         }
     }
 
     private void doUpdate(String[] doc_info) {
-        StringBuilder s=new StringBuilder();
-        for(int i=0;i<doc_info.length;i++){
-            s.append(doc_info[i]);
-        }
-        toast(s.toString());
+        mubanIsOrNotDiagnoseAm.setText(doc_info[0]);//上午
+        mubanDetailsStartTimeAm.setText(doc_info[1]);
+        mubanDetailsEndTimeAm.setText(doc_info[2]);
+        mubanDetailsAmountAm.setText(doc_info[3]);
+        mubanIsOrNotDiagnoseAm.setText(doc_info[4]);//下午
+        mubanDetailsStartTimeAm.setText(doc_info[5]);
+        mubanDetailsEndTimeAm.setText(doc_info[6]);
+        mubanDetailsAmountAm.setText(doc_info[7]);
+    }
+    private String booleanEmpty(String s){
+        if(TextUtils.isEmpty(s)){return "";}
+        else{return s;}
     }
 }

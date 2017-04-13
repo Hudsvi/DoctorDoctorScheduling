@@ -5,7 +5,7 @@ package sylu.com.doctorscheduling.constants;
  */
 
 public class Constants {
-    public static final String BASE_URL="jdbc:mysql://hudsvi.vicp.io:3306/" +
+    public static final String BASE_URL="jdbc:mysql://hudsvi.55555.io:3306/" +
             "doctor?connectTimeout=10000&socketTimeout=12000";
     public static final String PATH_OF_PROGRAM="app/doctor";
     public static final String FIRST_TIME_LAUNCHED="ft";
@@ -21,6 +21,7 @@ public class Constants {
     public static final String MUBAN_DOCTOR_LIST_DATE ="muban_doctor_date";
     public static final String MUBAN_WEEK="muban_day_of_week";
     public static final String MUBAN_DEPT="muban_dept";
+    public static final String MUBAN_DETAILS_EDIT="muban_detail_edit";
     public static final String MUBAN_WORKING_STATE="muban_working_state";
     public static final String MUBAN_NAME_ADD="add_doctor_name";//-------添加姓名的回调数据
     public static final String MUBAN_DEPT_ADD="add_doctor_dept";//----------添加科室的回调数据

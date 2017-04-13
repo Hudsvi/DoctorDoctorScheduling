@@ -57,6 +57,10 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     LinearLayout mubanMainLin;
     @BindView(R.id.paiban_main_img)
     ImageView paibanMainImg;
+    @BindView(R.id.paiban_doctor_produce)
+    ImageView paibanDoctorProduce;
+    @BindView(R.id.fuhe_doctor_notify)
+    ImageView fuheDoctorNotify;
     @BindView(R.id.paiban_main_tv)
     TextView paibanMainTv;
     @BindView(R.id.paiban_main_lin)
@@ -79,6 +83,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     ConstraintLayout mainLinearlayout;
     @BindView(R.id.main_titlebar_left_tv)
     TextView mainTitlebarLeftTv;
+    @BindView(R.id.main_titlebar_left_tv2)
+    TextView mainTitlebarLeftTv2;
+    @BindView(R.id.main_titlebar_left_tv3)
+    TextView mainTitlebarLeftTv3;
+    @BindView(R.id.main_titlebar_left_tv4)
+    TextView mainTitlebarLeftTv4;
     @BindView(R.id.muban_date)
     ConstraintLayout muban_date;
     private String[] titles;
@@ -138,7 +148,26 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                     mubanDoctorAdd.setVisibility(View.GONE);
                 }
                 if(position==2){
+                    mainTitlebarLeftTv2.setVisibility(View.VISIBLE);
+                    paibanDoctorProduce.setVisibility(View.VISIBLE);
+                    mainTitlebarLeftTv2.setText("自动排班");
+                }
+                else{
+                    mainTitlebarLeftTv2.setVisibility(View.GONE);
+                    paibanDoctorProduce.setVisibility(View.GONE);
+                }
+                if(position==3){
+                    mainTitlebarLeftTv3.setVisibility(View.VISIBLE);
+                    fuheDoctorNotify.setVisibility(View.VISIBLE);
 
+                }else{
+                    mainTitlebarLeftTv3.setVisibility(View.GONE);
+                    fuheDoctorNotify.setVisibility(View.GONE);
+                }
+                if(position==4){
+                    mainTitlebarLeftTv4.setVisibility(View.VISIBLE);
+                }else{
+                    mainTitlebarLeftTv4.setVisibility(View.GONE);
                 }
             }
 

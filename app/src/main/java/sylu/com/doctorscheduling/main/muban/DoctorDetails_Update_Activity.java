@@ -57,6 +57,7 @@ public class DoctorDetails_Update_Activity extends BaseActivity implements View.
     private WarningDialog warn;
     private String diagnose_am, diagnose_pm;
     private String[] d_info = new String[8];
+    private String[] info;//--------------未修改的数据
     private int type = 1;//---------判断返回图标还是返回键，默认返回键
     private int erroAt = 0;//-------------判断内容的是否正确，上午有误为1，下午有误为2，均有误为3，否则为0
     private boolean erro2 = false;
@@ -70,9 +71,24 @@ private MyDateTimePicker datepicker;
         warn = new WarningDialog(DoctorDetails_Update_Activity.this, this);
         date = getIntent().getStringExtra(Constants.MUBAN_DOCTOR_LIST_DATE);
         week = getIntent().getStringExtra(Constants.MUBAN_WEEK);
+        info=getIntent().getStringArrayExtra(Constants.MUBAN_DETAILS_EDIT);
+        initData();
+
+
+    }
+
+    private void initData() {
         mubanUpdateDetailsDays.setText(date);
         mubanUpdateDetailsDayOfWeek.setText(week);
         mubanDetailUpdateTitle.setText("模板编辑");
+        diagnoseAm.setSelection(Integer.parseInt(info[0]));
+        startAm.setText(info[1]);
+        endAm.setText(info[2]);
+        countAm.setText(info[3]);
+        diagnosePm.setSelection(Integer.parseInt(info[4]));
+        startPm.setText(info[5]);
+        endPm.setText(info[6]);
+        countPm.setText(info[7]);
     }
 
     @Override

@@ -107,7 +107,9 @@ public class Muban_Fragment extends BaseFragment implements ListContract, View.O
     private ImageView add_doctor;
     private Connection conn;
     private PreparedStatement pre_sta;
+    private PreparedStatement pre_sta2;
     private ResultSet rs;
+    private ResultSet rs2;
     private PtrHandler ptr_handler;
     private PtrFrameLayout mframe;
     private static Map<Integer, List<Doctor_Muban_List_Item>> doctor_maps;//-------------医生列表
@@ -731,22 +733,38 @@ public class Muban_Fragment extends BaseFragment implements ListContract, View.O
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-");
         Date add_date = getDate(getPosition());
         String add_name_date = format.format(add_date) + day;
+
 //        toast(dept + name + add_name_date);
         new Thread() {
             @Override
             public void run() {
+                String name_dept="102";
                 conn = SQLConnector.getInstance(getContext()).initSQL();
                 try {
+                    conn.setAutoCommit(false);
+                    pre_sta2=conn.prepareStatement("select dept_name from admin_dept where dept_no=?");
+                    pre_sta2.setString(1,dept);
+                    rs2=pre_sta2.executeQuery();
+                    while(rs2.next()) {
+                        name_dept =rs2.getString(1);
+                    }
                     pre_sta = conn.prepareStatement("insert into arrange(dept_no,date," +
-                            "doctor_name) values(?,?,?)");
+                            "doctor_name,dept_name) values(?,?,?,?)");
                     pre_sta.setString(1, dept);
                     pre_sta.setString(2, add_name_date);
                     pre_sta.setString(3, name);
+                    pre_sta.setString(4, name_dept);
                     pre_sta.executeUpdate();
+                    conn.commit();
                     Doctor_Muban_List_Item item = new Doctor_Muban_List_Item(dept, add_name_date, name);
                     doctor_maps.get(getPosition()).add(0, item);
                     sendmessage(ADD_DOCTOR_NAME_SUCCESS, null);
                 } catch (Exception e) {
+                    try {
+                        conn.rollback();
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
                     sendmessage(ADD_DOCTOR_NAMR_ERRO, e);
                 } finally {
                     closeSQL();

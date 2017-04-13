@@ -63,6 +63,10 @@
             android:name=".main.muban.DoctorDetails_Update_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Login" />
+        <activity
+            android:name=".main.paiban.Details_Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Login" />
     </application>
 
 </manifest>

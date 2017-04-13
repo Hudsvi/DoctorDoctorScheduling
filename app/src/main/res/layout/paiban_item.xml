@@ -7,11 +7,13 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
     android:layout_marginBottom="4dp"
-    app:cardBackgroundColor="@color/gray"
-    android:elevation="4dp"
-    app:cardCornerRadius="8dp">
+    app:cardBackgroundColor="@color/white"
+    android:elevation="6dp"
+    android:layout_marginTop="4dp"
+    app:cardCornerRadius="4dp">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/paiban_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

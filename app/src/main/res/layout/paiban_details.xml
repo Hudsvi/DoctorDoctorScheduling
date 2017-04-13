@@ -1,14 +1,56 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/muban_details_update_update_cardView"
+    android:id="@+id/paiban_details_update_update_cardView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/blue_mid_light">
-
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/muban_details_update_update_cons"
+        android:id="@+id/paiban_detail_name_title_ll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_mid_light"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/paiban_doctor_name_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:src="@drawable/edit_del"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/paiban_doctor_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加医生"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/paiban_doctor_name_back"
+            app:layout_constraintRight_toLeftOf="@+id/paiban_doctor_name_ok"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/paiban_doctor_name_ok"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:src="@drawable/edit_ok"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/paiban_details_update_update_cons"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="8dp"
@@ -27,26 +69,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/muban_details_week_tv"
+            android:id="@+id/paiban_details_week_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="请选择星期:"
             android:textColor="@color/black_yellow"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/muban_details_update_days"
+            app:layout_constraintBottom_toBottomOf="@+id/paiban_details_update_days"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/muban_details_update_days" />
+            app:layout_constraintTop_toTopOf="@+id/paiban_details_update_days" />
 
         <Spinner
-            android:id="@+id/muban_details_update_days"
+            android:id="@+id/paiban_details_update_days"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:entries="@array/day_of_week"
             android:padding="8dp"
             android:textSize="16sp"
-            app:layout_constraintLeft_toRightOf="@+id/muban_details_week_tv"
+            app:layout_constraintLeft_toRightOf="@+id/paiban_details_week_tv"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -59,10 +101,10 @@
             android:textColor="@color/black_yellow"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/muban_details_update_days" />
+            app:layout_constraintTop_toBottomOf="@+id/paiban_details_update_days" />
 
         <Spinner
-            android:id="@+id/muban_is_or_not_diagnose_am"
+            android:id="@+id/paiban_is_or_not_diagnose_am"
             android:layout_width="48dp"
             android:layout_height="0dp"
             android:entries="@array/muban_details_diagnose_choosing"
@@ -73,7 +115,7 @@
             app:layout_constraintTop_toTopOf="@+id/munban_update_is_or_not_diagnose_tv_am" />
 
         <TextView
-            android:id="@+id/muban_update_start_tv_am"
+            android:id="@+id/paiban_update_start_tv_am"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -87,20 +129,20 @@
             app:layout_constraintTop_toBottomOf="@+id/munban_update_is_or_not_diagnose_tv_am" />
 
         <TextView
-            android:id="@+id/muban_update_start_time_am"
+            android:id="@+id/paiban_update_start_time_am"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="8dp"
             android:text="08:30 AM"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/muban_update_start_tv_am"
-            app:layout_constraintLeft_toRightOf="@+id/muban_update_start_tv_am"
-            app:layout_constraintTop_toTopOf="@+id/muban_update_start_tv_am" />
+            app:layout_constraintBottom_toBottomOf="@+id/paiban_update_start_tv_am"
+            app:layout_constraintLeft_toRightOf="@+id/paiban_update_start_tv_am"
+            app:layout_constraintTop_toTopOf="@+id/paiban_update_start_tv_am" />
 
 
         <TextView
-            android:id="@+id/muban_update_end_tv_am"
+            android:id="@+id/paiban_update_end_tv_am"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -112,21 +154,21 @@
             android:textColor="@color/black_yellow"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/muban_update_start_tv_am" />
+            app:layout_constraintTop_toBottomOf="@+id/paiban_update_start_tv_am" />
 
         <TextView
-            android:id="@+id/muban_update_end_time_am"
+            android:id="@+id/paiban_update_end_time_am"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:text="11:30 AM"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/muban_update_end_tv_am"
-            app:layout_constraintLeft_toRightOf="@+id/muban_update_end_tv_am"
-            app:layout_constraintTop_toTopOf="@+id/muban_update_end_tv_am" />
+            app:layout_constraintBottom_toBottomOf="@+id/paiban_update_end_tv_am"
+            app:layout_constraintLeft_toRightOf="@+id/paiban_update_end_tv_am"
+            app:layout_constraintTop_toTopOf="@+id/paiban_update_end_tv_am" />
 
         <TextView
-            android:id="@+id/muban_update_amount_am_tv"
+            android:id="@+id/paiban_update_amount_am_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -135,10 +177,10 @@
             android:textColor="@color/black_yellow"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/muban_update_end_tv_am" />
+            app:layout_constraintTop_toBottomOf="@+id/paiban_update_end_tv_am" />
 
         <EditText
-            android:id="@+id/muban_update_amount_am"
+            android:id="@+id/paiban_update_amount_am"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -147,19 +189,19 @@
             android:maxLines="1"
             android:padding="8dp"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/muban_update_amount_am_tv"
-            app:layout_constraintLeft_toRightOf="@+id/muban_update_amount_am_tv"
-            app:layout_constraintTop_toTopOf="@+id/muban_update_amount_am_tv" />
+            app:layout_constraintBottom_toBottomOf="@+id/paiban_update_amount_am_tv"
+            app:layout_constraintLeft_toRightOf="@+id/paiban_update_amount_am_tv"
+            app:layout_constraintTop_toTopOf="@+id/paiban_update_amount_am_tv" />
 
         <View
-            android:id="@+id/muban_details_update_view"
+            android:id="@+id/paiban_details_update_view"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_margin="16dp"
             android:background="@drawable/div_line_vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/muban_update_amount_am" />
+            app:layout_constraintTop_toBottomOf="@+id/paiban_update_amount_am" />
 
         <TextView
             android:id="@+id/munban_update_is_or_not_diagnose_tv_pm"
@@ -171,10 +213,10 @@
             android:textColor="@color/black_yellow"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/muban_details_update_view" />
+            app:layout_constraintTop_toBottomOf="@+id/paiban_details_update_view" />
 
         <Spinner
-            android:id="@+id/muban_is_or_not_diagnose_pm"
+            android:id="@+id/paiban_is_or_not_diagnose_pm"
             android:layout_width="48dp"
             android:layout_height="0dp"
             android:entries="@array/muban_details_diagnose_choosing"
@@ -185,7 +227,7 @@
             app:layout_constraintTop_toTopOf="@+id/munban_update_is_or_not_diagnose_tv_pm" />
 
         <TextView
-            android:id="@+id/muban_update_details_update_start_tv_pm"
+            android:id="@+id/paiban_update_details_update_start_tv_pm"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:paddingLeft="8dp"
@@ -197,18 +239,18 @@
             app:layout_constraintTop_toBottomOf="@+id/munban_update_is_or_not_diagnose_tv_pm" />
 
         <TextView
-            android:id="@+id/muban_update_details_update_start_time_pm"
+            android:id="@+id/paiban_update_details_update_start_time_pm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="16dp"
             android:text="14:00 PM"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/muban_update_details_update_start_tv_pm"
-            app:layout_constraintLeft_toRightOf="@+id/muban_update_details_update_start_tv_pm"
-            app:layout_constraintTop_toTopOf="@+id/muban_update_details_update_start_tv_pm" />
+            app:layout_constraintBottom_toBottomOf="@+id/paiban_update_details_update_start_tv_pm"
+            app:layout_constraintLeft_toRightOf="@+id/paiban_update_details_update_start_tv_pm"
+            app:layout_constraintTop_toTopOf="@+id/paiban_update_details_update_start_tv_pm" />
 
         <TextView
-            android:id="@+id/muban_update_details_update_end_tv_pm"
+            android:id="@+id/paiban_update_details_update_end_tv_pm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -218,22 +260,22 @@
             android:textColor="@color/black_yellow"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/muban_update_details_update_start_time_pm" />
+            app:layout_constraintTop_toBottomOf="@+id/paiban_update_details_update_start_time_pm" />
 
 
         <TextView
-            android:id="@+id/muban_update_details_update_end_time_pm"
+            android:id="@+id/paiban_update_details_update_end_time_pm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:paddingTop="16dp"
             android:text="18:00 PM"
             android:textSize="16sp"
-            app:layout_constraintLeft_toRightOf="@+id/muban_update_details_update_end_tv_pm"
-            app:layout_constraintTop_toTopOf="@+id/muban_update_details_update_end_tv_pm" />
+            app:layout_constraintLeft_toRightOf="@+id/paiban_update_details_update_end_tv_pm"
+            app:layout_constraintTop_toTopOf="@+id/paiban_update_details_update_end_tv_pm" />
 
         <TextView
-            android:id="@+id/muban_update_details_update_amount_pm_tv"
+            android:id="@+id/paiban_update_details_update_amount_pm_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -243,10 +285,10 @@
             android:textColor="@color/black_yellow"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/muban_update_details_update_end_time_pm" />
+            app:layout_constraintTop_toBottomOf="@+id/paiban_update_details_update_end_time_pm" />
 
         <EditText
-            android:id="@+id/muban_update_details_update_amount_pm"
+            android:id="@+id/paiban_update_details_update_amount_pm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -256,13 +298,13 @@
             android:paddingLeft="8dp"
             android:paddingTop="16dp"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/muban_update_details_update_amount_pm_tv"
-            app:layout_constraintLeft_toRightOf="@+id/muban_update_details_update_amount_pm_tv"
-            app:layout_constraintTop_toTopOf="@+id/muban_update_details_update_amount_pm_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/paiban_update_details_update_amount_pm_tv"
+            app:layout_constraintLeft_toRightOf="@+id/paiban_update_details_update_amount_pm_tv"
+            app:layout_constraintTop_toTopOf="@+id/paiban_update_details_update_amount_pm_tv"
             app:layout_constraintVertical_bias="0.16000003" />
 
         <View
-            android:id="@+id/muban_details_update_view2"
+            android:id="@+id/paiban_details_update_view2"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginEnd="16dp"
@@ -273,7 +315,7 @@
             android:background="@drawable/div_line_vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/muban_update_details_update_amount_pm" />
+            app:layout_constraintTop_toBottomOf="@+id/paiban_update_details_update_amount_pm" />
 
         <Button
             android:layout_width="0dp"
@@ -283,7 +325,7 @@
             android:layout_marginLeft="64dp"
             android:layout_marginRight="64dp"
             android:layout_marginStart="64dp"
-            android:background="@drawable/bt_start_using"
+            android:background="@drawable/bt_signin"
             android:text="@string/yuyue_submit"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -302,9 +344,9 @@
             android:background="@drawable/paiban_details_stopping"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/muban_update_amount_am"
+            app:layout_constraintBottom_toBottomOf="@+id/paiban_update_amount_am"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/muban_update_amount_am" />
+            app:layout_constraintTop_toTopOf="@+id/paiban_update_amount_am" />
 
         <CheckBox
             android:id="@+id/checkBox2"
@@ -319,9 +361,9 @@
             android:text="@string/paiban_details_stopping"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/muban_update_details_update_amount_pm_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/paiban_update_details_update_amount_pm_tv"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/muban_update_details_update_amount_pm_tv" />
+            app:layout_constraintTop_toTopOf="@+id/paiban_update_details_update_amount_pm_tv" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
